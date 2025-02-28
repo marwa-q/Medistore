@@ -11,6 +11,8 @@ class ProductController
         $this->productModel = new Product($database);
     }
 
+   
+
     // public function showProducts()
     // {
     //     $products = $this->productModel->getAllProducts();
