@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "medicx";
+$dbname = "medistore";
 $username = "root";
 $password = "";
 
@@ -10,7 +10,4 @@ try {
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
- 
-
-
 ?>
