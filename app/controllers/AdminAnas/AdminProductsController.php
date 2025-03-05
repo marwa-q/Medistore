@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../models/Product.php";
+require_once __DIR__ . "/../../models/Product.php";
 
 class AdminProductsController
 {
@@ -16,7 +16,7 @@ class AdminProductsController
     {
         $products = $this->productModel->getAllProducts(); // Active products
         $deletedProducts = $this->productModel->getDeletedProducts(); // Deleted products
-        require __DIR__ . "/../views/admin/adminProducts.php";
+        require __DIR__ . "/../../views/admin/adminProducts.php";
     }
 
     public function delete($id)

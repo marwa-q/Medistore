@@ -33,7 +33,7 @@
                     <td><?= htmlspecialchars($product['updated_at']) ?></td>
                     <td>
                         <a href="/products/edit/<?= $product['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <form method="post" action="http://localhost/PHP_Tasks/Task31(MVC)/public/products/delete/<?= $product['id'] ?>" class="delete-product-form" data-id="<?= $product['id'] ?>" id="delete-form-<?= $product['id'] ?>">
+                        <form method="post" action="/public/products/delete/<?= $product['id'] ?>" class="delete-product-form" data-id="<?= $product['id'] ?>" id="delete-form-<?= $product['id'] ?>">
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
 
@@ -65,7 +65,7 @@
                     <td>$<?= htmlspecialchars(number_format($deletedProduct['price'], 2)) ?></td>
                     <td><?= htmlspecialchars($deletedProduct['deleted_at']) ?></td>
                     <td>
-                        <form method="post" action="http://localhost/PHP_Tasks/Task31(MVC)/public/products/restore/<?= $deletedProduct['id'] ?>" class="restore-product-form">
+                        <form method="post" action="/public/products/restore/<?= $deletedProduct['id'] ?>" class="restore-product-form">
                             <button type="submit" class="btn btn-success btn-sm">Restore</button>
                         </form>
                     </td>

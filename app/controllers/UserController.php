@@ -13,6 +13,9 @@ class UserController
     public function showUsers()
     {
         $users = $this->userModel->getAllUsers();
+        echo "<pre>";
+        print_r($_COOKIE);
+        echo "</pre>";
         require __DIR__ . "/../views/users.php"; // Load the users view
     }
 }

@@ -14,7 +14,7 @@
             <h2 class="mb-0">Edit Order #<?= htmlspecialchars($order['id']) ?></h2>
         </div>
         <div class="card-body">
-            <form action="http://localhost/PHP_Tasks/Task31(MVC)/public/orders/update/<?= $order['id'] ?>" method="POST">
+            <form action="/public/orders/update/<?= $order['id'] ?>" method="POST">
                 <table class="table table-striped">
                     <thead class="table-dark">
                         <tr>
@@ -44,7 +44,7 @@
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-between mt-3">
-                    <a href="http://localhost/PHP_Tasks/Task31(MVC)/public/orders" class="btn btn-secondary">Cancel</a>
+                    <a href="/public/orders" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-success">Save Changes</button>
                 </div>
             </form>
@@ -64,7 +64,7 @@
                     return;
                 }
 
-                fetch(`http://localhost/PHP_Tasks/Task31(MVC)/public/orders/deleteItem/${orderId}/${productId}`, {
+                fetch(`/public/orders/deleteItem/${orderId}/${productId}`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"

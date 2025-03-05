@@ -41,7 +41,7 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a href="http://localhost/PHP_Tasks/Task31(MVC)/public/orders" class="btn btn-primary">Back to Orders</a>
+        <a href="/public/orders" class="btn btn-primary">Back to Orders</a>
 
     </div>
     <div class="container mt-4">

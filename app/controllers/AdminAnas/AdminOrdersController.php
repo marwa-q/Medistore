@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__ . "/../models/Admin.php";
+require_once __DIR__ . "/../../models/Admin.php";
 
 class AdminOrdersController
 {
-
+    
     private $adminSchema;
 
     public function __construct($database)
@@ -15,7 +15,7 @@ class AdminOrdersController
     public function getAllGeneralOrders()
     {
         $orders = $this->adminSchema->showAllTheOrdersGeneral();
-        require __DIR__ . "/../views/Admin/adminOrdersGeneral.php";
+        require __DIR__ . "/../../views/Admin/adminOrdersGeneral.php";
     }
 
     public function getSpecificOrder($id)
@@ -24,7 +24,7 @@ class AdminOrdersController
         $items = $this->adminSchema->getOrderItems($id);
         $logs = $this->adminSchema->getOrderEditLogs($id) ?? []; // Fetch logs here
 
-        require __DIR__ . "/../views/admin/adminOrderItems.php"; // Load the view
+        require __DIR__ . "/../../views/admin/adminOrderItems.php"; // Load the view
     }
 
 
@@ -33,7 +33,7 @@ class AdminOrdersController
         $order = $this->adminSchema->getOrderById($orderId);
         $items = $this->adminSchema->getOrderItems($orderId);
 
-        require __DIR__ . "/../views/admin/editOrder.php"; // Load the edit order page
+        require __DIR__ . "/../../views/admin/editOrder.php"; // Load the edit order page
     }
 
     public function updateOrder($id) {
@@ -45,7 +45,7 @@ class AdminOrdersController
             }
     
             
-            header("Location: public/orders/show/$id");
+            // header("Location: public/orders/show/$id");
             exit;
         }
     }
