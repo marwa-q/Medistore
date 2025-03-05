@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ستايل عام للأزرار */
+.cart-btn {
+    background: linear-gradient(to right, #1E3A8A, #009cff);
+    color: white;
+    border: none;
+    padding: 12px 18px; /* افتراضي */
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* عند التحويم */
+.cart-btn:hover {
+    background: #1E3A8A;
+}
+
+/* أيقونة القلب */
+.wishlist {
+    font-size: 18px;
+    color: #ff4d4d;
+    transition: 0.3s;
+}
+
+.wishlist:hover {
+    color: #d63333;
+    transform: scale(1.2);
+}
+
+/* 💻 للأجهزة اللوحية (تابلت) */
+@media (max-width: 992px) {
+    .cart-btn {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+
+    .wishlist {
+        font-size: 16px;
+    }
+}
+
+/* 📱 للأجهزة الصغيرة (الموبايلات) */
+@media (max-width: 768px) {
+    .cart-btn {
+        font-size: 13px;
+        padding: 8px 14px;
+        border-radius: 6px;
+    }
+
+    .wishlist {
+        font-size: 14px;
+    }
+}
+
+/* 📱 للأجهزة الأصغر (شاشات الهاتف الصغيرة جداً) */
+@media (max-width: 480px) {
+    .cart-btn {
+        font-size: 12px;
+        padding: 7px 12px;
+        border-radius: 5px;
+    }
+
+    .wishlist {
+        font-size: 13px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Our Products</h2>
+        <ul>
+           <button><li>All Products</li></button>
+           <button><li>Medical Clothing </li></button>
+           <button><li>Medical Supplies</li></button>
+           <button><li>Medical Equipment</li></button>
+           <button><li>Medical Accessories</li></button>
+        </ul>
+    </section>
+</body>
+</html>
