@@ -1,0 +1,351 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    list-style-type: none;
+    scroll-behavior: smooth;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+:root {
+    --darkBlue: #1E3A8A;
+    --light-blue: #009cff;
+    --Medium-blue: #3B82F6;
+    --danger-red: #DC3545;
+    --dark-grey: #333333;
+    --black: #000000;
+    --white: #FFFFFF;
+    --soft-grey: #F5F5F5;
+}
+
+header {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#headline-section {
+    margin: auto;
+    padding: 5%;
+    height: 10em;
+    width: 100vw;
+    background-color: var(--soft-grey);
+}
+
+#headline-section h2 {
+    display: flex;
+    color: var(--dark-grey);
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* Cart section */
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+#table-head {
+    border-bottom: 1px solid var(--dark-grey);
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    color: var(--dark-grey);
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 50%;
+}
+
+.remove {
+    color: var(--danger-red);
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+/* Confirmation Model style */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    display: inline;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#confirm-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.modal-button {
+    margin: 10px;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* Confirm Button */
+#confirmYes {
+    background-color: var(--darkBlue);
+    color: white;
+}
+
+/* Cancel Button */
+#confirmNo {
+    background-color: var(--white);
+    color: var(--dark-grey);
+    border: 1px solid var(--dark-grey);
+}
+
+/*Coupone style*/
+
+.coupon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.coupon-container input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.coupon-container button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    background-color: var(--darkBlue);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.coupon-container button:hover {
+    background-color: var(--Medium-blue);
+}
+
+#couponMessage {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Total section */
+
+.total-section {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 40vw;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.total-section h5{
+    text-align: center;
+    margin-top: 20px;
+    color: var(--dark-grey);
+}
+
+#summary {
+    margin-bottom: 10px;
+    margin-right: 50px;
+    color: var(--dark-grey);
+}
+
+.checkout-btn {
+    width: 30%;
+    padding: 10px;
+    margin: 0 auto;
+    background: var(--darkBlue);
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+}
+.btn:hover {
+    background: #0056b3;
+}
+
+footer {
+    margin-top: 30px;
+    height: 50vh;
+    background-color: var(--dark-grey);
+}
+
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+    /* Adjust cart table for tablets */
+    table {
+        width: 95%;
+    }
+    
+    .total-section {
+        width: 60vw;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navbar adjustments */
+    .navbar-nav {
+        text-align: center;
+    }
+    
+    .navbar-toggler {
+        border: none;
+    }
+    
+    .navbar-nav .nav-item {
+        padding: 5px;
+    }
+    
+    /* Headline section adjustments */
+    #headline-section {
+        padding: 10%;
+        height: auto;
+    }
+    
+    #headline-section h2 {
+        font-size: 1.8em;
+    }
+    
+    /* Cart table adjustments */
+    table {
+        width: 100%;
+    }
+    
+    th, td {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    /* Coupon section adjustments */
+    .coupon-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .coupon-container input {
+        width: 90%;
+    }
+    
+    .coupon-container button {
+        width: 50%;
+    }
+    
+    /* Order summary adjustments */
+    .total-section {
+        width: 80vw;
+        padding: 15px;
+    }
+    
+    .checkout-btn {
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Headline adjustments */
+    #headline-section {
+        padding: 15% 5%;
+    }
+    
+    #headline-section h2 {
+        font-size: 1.5em;
+    }
+    
+    /* Cart adjustments */
+    table {
+        width: 90%;
+        display: block;
+        overflow-x: auto;
+    }
+    
+    th, td {
+        font-size: 12px;
+    }
+    
+    /* Coupon adjustments */
+    .coupon-container input {
+        width: 90%;
+    }
+    
+    .coupon-container button {
+        width: 90%;
+    }
+    
+    /* Order summary adjustments */
+    .total-section {
+        width: 90vw;
+    }
+    
+    .checkout-btn {
+        width: 100%;
+    }
+}

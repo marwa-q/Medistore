@@ -1,0 +1,284 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    list-style-type: none;
+    scroll-behavior: smooth;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+:root {
+    --darkBlue: #1E3A8A;
+    --light-blue: #009cff;
+    --Medium-blue: #3B82F6;
+    --danger-red: #DC3545;
+    --dark-grey: #333333;
+    --black: #000000;
+    --white: #FFFFFF;
+    --soft-grey: #F5F5F5;
+}
+
+header {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    margin-top: 50px;
+}
+
+/* Billing details style */
+
+#billing-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#billing-details h2{
+    color: var(--dark-grey);
+}
+
+.form-container {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-container button {
+    background: var(--darkBlue);
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 50px;
+}
+
+button:hover {
+    background: var(--Medium-blue);
+}
+.error {
+    color: var(--danger-red);
+    font-size: 14px;
+}
+
+/* Cart section style */
+
+#cart-total {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+#table-head {
+    border-bottom: 1px solid var(--dark-grey);
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    color: var(--dark-grey);
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+/* invoice style */
+
+#order-total {
+    margin: 0 auto;
+    margin-top: 30px;
+
+}
+
+.invoice-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: 20px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: start;
+}
+
+.total-row td {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#placeOrderBtn {
+    background: var(--darkBlue);
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#placeOrderBtn:hover {
+    background-color: var(--Medium-blue); /* Darker green */
+    transform: scale(1.05);
+}
+
+#placeOrderBtn:active {
+    background-color: var(--Medium-blue); /* Even darker green */
+    transform: scale(0.98);
+}
+
+footer {
+    margin-top: 30px;
+    height: 50vh;
+    background-color: var(--dark-grey);
+}
+
+/* Responsive Design */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+    }
+
+    #billing-details, #cart-total {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    .form-container, .invoice-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+}
+
+/* Mobile Phones (max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        display: block;
+    }
+
+    .navbar-collapse {
+        text-align: center;
+    }
+
+    .d-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    .form-container button, #placeOrderBtn {
+        font-size: 14px;
+        height: 45px;
+    }
+
+    table {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Small Mobile Screens (max-width: 480px) */
+@media (max-width: 480px) {
+    #billing-details, #cart-total {
+        width: 100%;
+    }
+
+    .form-container, .invoice-container {
+        padding: 10px;
+    }
+
+    input {
+        padding: 6px;
+    }
+
+    .form-container button, #placeOrderBtn {
+        height: 40px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    img {
+        width: 35px;
+        height: 35px;
+    }
+}
