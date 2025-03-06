@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap");
+* {
+  
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+text-decoration: none;
+border: none;
+outline: none;
+list-style-type: none;
+scroll-behavior: smooth;
+font-family: 'Open Sans', sans-serif;
+}
+body {
+    background-color: #f8fafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 600px; 
+    width: 100%;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color:#009cff;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+
+.admin-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f8fafa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.profile-section img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-id {
+    color: #007bff;
+}
+
+.warning {
+    color: #d9534f;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+.row {
+    display: flex;
+    justify-content: space-between; 
+    gap: 35px; 
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.phone-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+}
+
+.phone-input input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+}
+
+.Joined-Date {
+    width: 240px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2px;
+    margin-top: 20px;
+}
+
+.buttons button {
+    padding: 12px 18px;
+    border: 2px solid; /* إضافة حدود بسمك 2px */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: transparent; /* جعل الخلفية شفافة */
+}
+
+.save {
+    border-color: #009cff; /* لون الحدود لزر الحفظ */
+    color: #009cff; /* لون النص لزر الحفظ */
+}
+
+.reset {
+    border-color: #17a2b8; /* لون الحدود لزر إعادة التعيين */
+    color: #17a2b8; /* لون النص لزر إعادة التعيين */
+}
+
+.delete {
+    border-color: #dc3545; /* لون الحدود لزر الحذف */
+    color: #dc3545; /* لون النص لزر الحذف */
+    margin-left: auto;
+}
+
+.buttons button:hover {
+    opacity: 0.8;
+}
