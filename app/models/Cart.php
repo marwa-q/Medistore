@@ -9,6 +9,15 @@ class Cart
         $this->db = $db;
     }
 
+    public function getCartItemCount($user_id)
+    {
+        $stmt = $this->db->prepare("SELECT product_id, quantity FROM carts WHERE customer_id = ?");
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch as an associative array
+    }
+
+
+
     public function addToCart($product_id, $quantity)
     {
         $customer_id = 1;
@@ -29,9 +38,10 @@ class Cart
     public function getCart()
     {
         $customer_id = 1;
-        $stmt = $this->db->prepare("SELECT carts.*, products.name, products.price FROM carts 
-                                    JOIN products ON carts.product_id = products.id 
-                                    WHERE customer_id = ?");
+        $stmt = $this->db->prepare("SELECT carts.*, products.name, products.price, products.image_url 
+                            FROM carts 
+                            JOIN products ON carts.product_id = products.id 
+                            WHERE customer_id = ?");
         $stmt->execute([$customer_id]);
         return $stmt->fetchAll();
     }

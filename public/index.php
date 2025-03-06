@@ -33,14 +33,22 @@ $cartController = new CartController($pdo);
 
 $orderController = new OrderController($pdo);
 
-// $productController->showAllCategories();
 
-// Homepage Test Route
-$router->addRoute("/", function () {
-    echo "Hi";
+// Test
+// $productController->showAllCategories();
+$router->addRoute("/dashboard", function () {
+    require_once __DIR__ . '/../app/views/_AdminDashboard/dashboard.php';
 });
+/****************************************************************/
+// Homepage Test Route
+
+
 
 // Hendi 
+
+$router->addRoute("/admin/settings",function()use($authController){
+    $authController->showAdminSettings();
+});
 $router->addRoute("/users", function () use ($AdminUsersController) {
     $AdminUsersController->showUsers();
 });

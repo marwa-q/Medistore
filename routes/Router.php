@@ -28,7 +28,7 @@ class Router
             $this->routes[$requestUri]();
         } else {
             http_response_code(404);
-            echo "404 - Page Not Found";
+            require_once __DIR__ . "/../app/views/Auth/404page.php";
         }
     }
 

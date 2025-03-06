@@ -35,6 +35,18 @@ class AuthController
         require __DIR__ . "/../../views/Auth/registeration.php";
     }
 
+    public function showAdminSettings()
+    {
+        echo Func::checkIfLoggedIn();
+        if (isset($_COOKIE['user_id'])) {
+            $adminId = $_COOKIE['user_id']; // Get the admin ID from the cookie  
+            $user = $this->authModel->getAdminSettings($adminId);
+        } else {
+            $user = null; // Handle the case where the cookie is missing  
+        }
+        require __DIR__ . "/../../views/Admin/adminProfileSettings.php";
+    }
+
     public function login()
     {
         echo Func::checkIfLoggedIn();

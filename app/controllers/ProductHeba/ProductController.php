@@ -62,6 +62,13 @@ class ProductController
     public function showAllCategories()
     {
         $cats = $this->productModel->getAllCategories();
+        $favoriteProductIds = $this->productModel->getFavoritesByUser("1");
+        // print_r($favoriteProductIds);
+        $CartProductId = $this->productModel->getCartItemCount("1");
+        // $CartProductId = count($CartProductId);
+        // print_r($CartProductId);
+        // print_r($favoriteProductIds);
+
         require __DIR__ . "/../../views/category.php"; // عرض الف��ات في view
     }
 

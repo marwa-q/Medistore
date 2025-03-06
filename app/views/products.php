@@ -82,13 +82,13 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
             document.querySelectorAll('.favorite-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const productId = this.getAttribute('data-product-id');
-                    const action = this.getAttribute('data-action');
-                    const url = action === 'add' ? '<?= $baseUrl ?>/addtofavorites' : '<?= $baseUrl ?>/removefromfavorites';
+                    let action = this.getAttribute('data-action');
+                    let url = (action === 'add') ? '<?= $baseUrl ?>/addtofavorites' : '<?= $baseUrl ?>/removefromfavorites';
 
                     fetch(url, {
                             method: 'POST',
                             headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
+                                'Content-Type': 'application/x-www-form-urlencoded'
                             },
                             body: `product_id=${productId}`
                         })
@@ -107,6 +107,9 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
                                     button.setAttribute('data-action', 'add');
                                     button.innerHTML = '<i class="fa fa-heart"></i> Add to Favorites';
                                 }
+
+                                // ✅ Update the favorite count
+                                updateFavoriteCount(data.favorite_count);
                             } else {
                                 alert(data.message);
                             }
@@ -115,7 +118,66 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
                 });
             });
         });
+
+        // Function to update the favorite count
+        function updateFavoriteCount(count) {
+            const favoriteButton = document.getElementById("favoriteButton");
+            if (favoriteButton) {
+                favoriteButton.querySelector("span").innerText = `Favorites (${count})`;
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.cart-form').forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent default form submission
+
+                    const formData = new FormData(this);
+                    const url = this.getAttribute('action'); // Action URL (add or remove)
+                    const button = this.querySelector('button');
+
+                    fetch(url, {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // Toggle button appearance based on action
+                                if (url.includes('add')) {
+                                    button.classList.remove('btn-outline-primary');
+                                    button.classList.add('btn-danger');
+                                    button.innerHTML = '🛒 Remove from Cart';
+                                    this.setAttribute('action', '/public/cart/remove');
+                                } else {
+                                    button.classList.remove('btn-danger');
+                                    button.classList.add('btn-outline-primary');
+                                    button.innerHTML = '➕ Add to Cart';
+                                    this.setAttribute('action', '/public/cart/add');
+                                }
+
+                                // ✅ Update cart count dynamically
+                                updateCartCount(data.cart_count);
+                            } else {
+                                alert(data.message);
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+
+        // Function to update the cart count
+        function updateCartCount(count) {
+            const cartButton = document.getElementById("cartButton");
+            if (cartButton) {
+                cartButton.querySelector("span").innerText = `Cart (${count})`;
+            }
+        }
     </script>
+
+
 
     <!-- Bootstrap JS (Optional, for better interactive components) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -12,12 +12,12 @@ class CategoryController
     }
 
 
-    public function showCategory()
-    {
-        $categories = $this->productCategory->getAllCategories(); // جلب الفئات من قاعدة البيانات
-        foreach ($categories as $category) {
-            echo $category;
-        }
-        require __DIR__ . "/../../views/category.php"; // تحميل الصفحة مع تمرير البيانات
-    }
+    // public function showCategory()
+    // {
+    //     $categories = $this->productCategory->getAllCategories(); // جلب الفئات من قاعدة البيانات
+    //     foreach ($categories as $category) {
+    //         echo $category;
+    //     }
+    //     require __DIR__ . "/../../views/category.php"; // تحميل الصفحة مع تمرير البيانات
+    // }
 }
