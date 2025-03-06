@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/adminsett.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Settings</h2>
+        <div class="admin-card">
+            <div class="profile-section">
+                <img src="https://static.vecteezy.com/system/resources/previews/020/348/947/non_2x/team-mangement-icon-vector.jpg" alt="User Profile">
+                <div class="user-info">
+                    <p><strong>User ID:</strong> <span class="user-id"></span></p>
+                    <label for="role">Role:</label>
+                     <span>Super Admin</span>
+
+                       
+                    </select>
+                    <p class="warning"></p>
+                </div>
+            </div>
+            <div class="form-section">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter full name">
+
+                <div class="row">
+                    <div class="column">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter email address">
+                    </div>
+                    <div class="column">
+                        <label>Phone Number</label>
+                        <div class="phone-input">
+                            <input type="tel" placeholder="Enter phone number">
+                        </div>
+                    </div>
+                </div>
+                <label>Joined Date</label>
+                <div class="Joined-Date">
+                   <input type="text" placeholder="Enter joined date">
+                </div>
+                <div class="buttons">
+                    <button class="save"><i class="fa-regular fa-floppy-disk"></i> Save Changes</button>
+                    <button class="reset"><i class='bx bx-reset'></i>Reset Password</button>
+                    <button class="delete"><i class="fa-regular fa-trash-can"></i> Delete Account</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
