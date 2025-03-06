@@ -1,0 +1,133 @@
+.favorites-section {
+    padding: 40px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.text-favorites h2 {
+    font-size: 28px;
+    color: #1E3A8A;
+    margin-top: 40px;
+}
+
+.product-favorites {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.favorites-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 كروت في كل سطر */
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ضبط حجم الصورة داخل الكارد */
+.card-image {
+    width: 100%;
+    max-width: 250px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 10px;
+    width: 100%;
+}
+
+.card h2 {
+    font-size: 18px;
+    color: #1E3A8A;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    font-size: 18px;
+    color: #009cff;
+    font-weight: bold;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* تصميم زر الإضافة إلى السلة */
+.cart-btn {
+    background: linear-gradient(to right, #1E3A8A, #009cff);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cart-btn:hover {
+    background: #1E3A8A;
+}
+
+/* ستايل القلب */
+.wishlist i {
+    font-size: 18px;
+    color: #ff4d4d;
+    transition: 0.3s;
+}
+
+.wishlist:hover i {
+    color: #d63333;
+    transform: scale(1.2);
+}
+
+/* تصميم متجاوب */
+@media (max-width: 1024px) {
+    .favorites-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .favorites-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

@@ -34,8 +34,17 @@
         </ul>
 
         <div class="icon-nav">
-            <i class="fa-solid fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
+            
+            <a href="favorites.html">
+                <i class="fa-solid fa-heart cart-icon"> 
+                    <span class="cart-count">3</span>
+                </i>
+            </a>
+
+            <i class="fa-solid fa-cart-shopping cart-icon">
+                <span class="cart-count">3</span>
+            </i>
+
             <i class="fa-solid fa-user"></i>
         </div>
     </nav>
@@ -230,7 +239,12 @@
  <!-- END COPYRIGHT SECTION -->
 
 
-
+ <script>
+    function addToCart(button) {
+        button.innerHTML = '<i class="fa-solid fa-check"></i> Added';
+        button.style.backgroundColor = "#1E3A8A"; 
+    }
+</script>
     <script src="..\js/index.js"></script>
 </body>
 </html>
