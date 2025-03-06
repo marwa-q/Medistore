@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . "/_functions.php";
+
 
 class Product
 {
@@ -13,6 +15,7 @@ class Product
 
     public function getAllProducts()
     {
+        // Func::checkRegularAdmin();
         $stmt = $this->db->prepare("
         SELECT p.*, c.name AS category_name 
         FROM products p 
@@ -26,6 +29,7 @@ class Product
     // Get deleted products
     public function getDeletedProducts()
     {
+        Func::checkRegularAdmin();
         $stmt = $this->db->prepare("SELECT * FROM products WHERE deleted_at IS NOT NULL");
         $stmt->execute();
         return $stmt->fetchAll();
@@ -34,6 +38,7 @@ class Product
     // Soft delete product by setting deleted_at timestamp
     public function deleteProduct($id)
     {
+        Func::checkRegularAdmin();
         $stmt = $this->db->prepare("UPDATE products SET deleted_at = NOW() WHERE id = :id");
         return $stmt->execute([':id' => $id]);
     }
@@ -41,12 +46,14 @@ class Product
     // Restore deleted product
     public function restoreProduct($id)
     {
+        Func::checkRegularAdmin();
         $stmt = $this->db->prepare("UPDATE products SET deleted_at = NULL WHERE id = :id");
         return $stmt->execute([':id' => $id]);
     }
 
     public function getProductById($id)
     {
+        // Func::checkRegularAdmin();
         $stmt = $this->db->prepare("SELECT * FROM products WHERE id = :id");
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -55,6 +62,7 @@ class Product
 
     public function softDeleteProduct($id)
     {
+        Func::checkRegularAdmin();
         $stmt = $this->db->prepare("UPDATE products SET deleted_at = NOW() WHERE id = :id");
         return $stmt->execute([':id' => $id]);
     }
@@ -89,6 +97,15 @@ class Product
         $stmt->execute([$customer_id]);
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public function getCartItemCount($user_id)
+    {
+        $stmt = $this->db->prepare("SELECT product_id, quantity FROM carts WHERE customer_id = ?");
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch as an associative array
+    }
+
+
 
     public function getProductsByCategory($categoryId)
     {

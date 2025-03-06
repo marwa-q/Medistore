@@ -144,14 +144,19 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
 
     <!-- Buttons -->
     <div style="display: flex; flex-direction: column;">
-        <button class="heart-button" id="favoriteButton">
-            <img src="../../assets/heart-svgrepo-com.svg" alt="Heart">
-            <span>Favorites</span>
-        </button>
-        <button class="heart-button" id="cartButton">
-            <img src="../../assets/shopping-cart-outline-svgrepo-com.svg" alt="Cart">
-            Cart
-        </button>
+        <form action="<?= $baseUrl ?>/favorite" method="POST" style="display:inline;">
+            <button type="submit" class="heart-button" id="favoriteButton">
+                <img src="../../assets/heart-svgrepo-com.svg" alt="Heart">
+                <span>Favorites (<?= count($favoriteProductIds) ?>)</span>
+            </button>
+        </form>
+
+        <form action="<?= $baseUrl ?>/cart" method="POST" style="display:inline;">
+            <button type="submit" class="heart-button" id="cartButton">
+                <img src="../../assets/shopping-cart-outline-svgrepo-com.svg" alt="Cart">
+                <span>Cart (<?= count($CartProductId) ?>)</span>
+            </button>
+        </form>
     </div>
     <br>
 
@@ -191,13 +196,12 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
             }
         });
 
-        document.getElementById("favoriteButton").addEventListener("click", function() {
-            this.classList.toggle("active");
-            window.location.href = "<?= $baseUrl ?>/favorite";
+        document.getElementById("favoriteButton").addEventListener("click", function(event) {
+            this.closest("form").submit();
         });
 
-        document.getElementById("cartButton").addEventListener("click", function() {
-            window.location.href = "<?= $baseUrl ?>/cart";
+        document.getElementById("cartButton").addEventListener("click", function(event) {
+            this.closest("form").submit();
         });
     </script>
 </body>

@@ -45,4 +45,16 @@ class Auth
 
         return false;
     }
+
+    public function getAdminSettings($adminId)
+    {
+        echo Func::checkRegularAdmin();
+
+        $query = "SELECT id, full_name, email, phone_number, role, joined FROM customers WHERE id = :adminId";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":adminId", $adminId);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user : null;
+    }
 }
