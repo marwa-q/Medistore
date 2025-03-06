@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="..\css\index.css">
+    <link rel="stylesheet" href="..\css\favorites.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+<!-- Spinner Start -->
+<div id="spinner">
+    <div class="spinner-grow text-primary" role="status"></div>
+</div>
+<!-- Spinner End -->
+
+<!-- nav start-->
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo" >MediStore</a>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html" style="color: #009cff;">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+           
+        </ul>
+
+        <div class="icon-nav">
+            
+            <a href="C:/Users/orange/Desktop/hebahtml/html/favorites.html">
+                <i class="fa-solid fa-heart cart-icon"> 
+                    <span class="cart-count">3</span>
+                </i>
+            </a>
+
+            <i class="fa-solid fa-cart-shopping cart-icon">
+                <span class="cart-count">3</span>
+            </i>
+
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </nav>
+</header>
+<!-- nav end-->
+
+<!--favorites products start-->
+<section class="favorites-section">
+    <div class="text-favorites">
+        <h2>My Favorites </h2>
+    </div>
+    <div class="product-favorites">
+        <div class="favorites-cards">
+            <!-- تكرار الكارد 4 مرات -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.pexels.com/photos/12585206/pexels-photo-12585206.jpeg" alt="Product Image">
+                </div>
+                <div class="card-content">
+                    <h2>Product Name</h2>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <h3>20.00 JD</h3>
+                    <div class="card-actions">
+                        <button class="cart-btn" onclick="addToCart(this)">
+                            <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                        </button>
+                        <a href="#" class="wishlist">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.pexels.com/photos/12585206/pexels-photo-12585206.jpeg" alt="Product Image">
+                </div>
+                <div class="card-content">
+                    <h2>Product Name</h2>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <h3>20.00 JD</h3>
+                    <div class="card-actions">
+                        <button class="cart-btn" onclick="addToCart(this)">
+                            <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                        </button>
+                        <a href="#" class="wishlist">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.pexels.com/photos/12585206/pexels-photo-12585206.jpeg" alt="Product Image">
+                </div>
+                <div class="card-content">
+                    <h2>Product Name</h2>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <h3>20.00 JD</h3>
+                    <div class="card-actions">
+                        <button class="cart-btn" onclick="addToCart(this)">
+                            <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                        </button>
+                        <a href="#" class="wishlist">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.pexels.com/photos/12585206/pexels-photo-12585206.jpeg" alt="Product Image">
+                </div>
+                <div class="card-content">
+                    <h2>Product Name</h2>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                    <h3>20.00 JD</h3>
+                    <div class="card-actions">
+                        <button class="cart-btn" onclick="addToCart(this)">
+                            <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                        </button>
+                        <a href="#" class="wishlist">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function addToCart(button) {
+        button.innerHTML = '<i class="fa-solid fa-check"></i> Added';
+        button.style.backgroundColor = "#1E3A8A"; 
+    }
+</script>
+
+
+
+
+
+
+
+<!--favorites products end-->
+
+
+    <!-- ٍstart FOOTER SECTION -->
+    <footer class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-9 col-md-9 col-sm-12">
+              <div class="content">
+                <a href="#" class="logo">
+                  <h2>Medestore</h2>
+                </a>
+                <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, magni.
+                </p>
+                <div class="social-list">
+                  <a href="#" class="social-item">
+                    <i class="fa-brands fa-facebook"></i>
+                  </a>
+                  <a href="#" class="social-item">
+                    <i class="fa-brands fa-twitter"></i>
+                  </a>
+                  <a href="#" class="social-item">
+                    <i class="fa-brands fa-linkedin"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-3 col-md-3 col-sm-12">
+              <div class="row">
+                <div class="col-12 col-md-12 col-sm-12">
+                  <div class="content">
+                    <p><b>Medestore</b></p>
+                    <ul class="footer-menu">
+                      <li><a href="aboutus.html">About us</a></li>
+                      <li><a href="pages/profile.html">My profile</a></li>
+                      <li><a href="aboutus.html">Services</a></li>
+                      <li><a href="pages/contactUs.html">Contact Us</a></li>
+                      
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- END FOOTER SECTION -->
+ <!-- COPYRIGHT SECTION -->
+ <div class="copyright">&copy; 2025 Medistore | All Rights Reserved</div>
+ <!-- END COPYRIGHT SECTION -->
+
+
+    <script src="..\js/index.js"></script>
+</body>
+</html>
