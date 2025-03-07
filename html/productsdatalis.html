@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="..\css\index.css">
+    <link rel="stylesheet" href="..\css\productsdatils.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <!-- nav start-->
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo" >MediStore</a>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html" style="color: #009cff;">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+           
+        </ul>
+
+        <div class="icon-nav">
+            
+            <a href="favorites.html">
+                <i class="fa-solid fa-heart cart-icon"> 
+                    <span class="cart-count">3</span>
+                </i>
+            </a>
+
+            <i class="fa-solid fa-cart-shopping cart-icon">
+                <span class="cart-count">3</span>
+            </i>
+
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </nav>
+</header>
+<!-- nav end-->
+
+
+    <section class="product-details-card">
+        <!-- جزء الصورة -->
+        <div class="product-image">
+            <span class="category-tag">Medical Supplies</span>
+            <img src="https://images.pexels.com/photos/12585206/pexels-photo-12585206.jpeg" alt="Product Image">
+        </div>
+    
+        <!-- جزء المعلومات -->
+        <div class="product-info">
+            <h2 class="product-name">Premium Medical Stethoscope</h2>
+            <h3 class="product-price">20.00 JD</h3>
+    
+            <!-- حالة المنتج -->
+            <!-- حالة المنتج -->
+<div class="stock-status-container">
+    <button class="stock-status">
+        <i class="fa-solid fa-check-circle"></i> In Stock
+    </button>
+    <span class="stock-status-text">Ships within 24 hours</span>
+</div>
+
+    
+            <!-- وصف المنتج -->
+            <p class="product-description">
+                This high-quality stethoscope is designed for medical professionals, ensuring clear and precise sound transmission.
+                Crafted with durable materials for long-term use.
+            </p>
+    
+            <!-- ميزات المنتج -->
+            <div class="product-features">
+                <p><i class="fa-solid fa-stethoscope"></i> High-Quality Sound</p>
+                <p><i class="fa-solid fa-heart-pulse"></i> Durable Material</p>
+                <p><i class="fa-solid fa-shield-alt"></i> 1-Year Warranty</p>
+            </div>
+    
+            <!-- أزرار الشراء -->
+            <div class="product-actions">
+                <button class="cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                </button>
+                <button class="buy-now">Buy Now</button>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+
+        <!-- ٍstart FOOTER SECTION -->
+        <footer class="section">
+            <div class="container">
+              <div class="row">
+                <div class="col-9 col-md-9 col-sm-12">
+                  <div class="content">
+                    <a href="#" class="logo">
+                      <h2>Medestore</h2>
+                    </a>
+                    <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, magni.
+                    </p>
+                    <div class="social-list">
+                      <a href="#" class="social-item">
+                        <i class="fa-brands fa-facebook"></i>
+                      </a>
+                      <a href="#" class="social-item">
+                        <i class="fa-brands fa-twitter"></i>
+                      </a>
+                      <a href="#" class="social-item">
+                        <i class="fa-brands fa-linkedin"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3 col-md-3 col-sm-12">
+                  <div class="row">
+                    <div class="col-12 col-md-12 col-sm-12">
+                      <div class="content">
+                        <p><b>Medestore</b></p>
+                        <ul class="footer-menu">
+                          <li><a href="aboutus.html">About us</a></li>
+                          <li><a href="pages/profile.html">My profile</a></li>
+                          <li><a href="aboutus.html">Services</a></li>
+                          <li><a href="pages/contactUs.html">Contact Us</a></li>
+                          <li><a href="pages/searchPage.html">Search</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+          <!-- END FOOTER SECTION -->
+     <!-- COPYRIGHT SECTION -->
+     <div class="copyright">&copy; 2025 Medistore | All Rights Reserved</div>
+     <!-- END COPYRIGHT SECTION -->
+    
+    
+    
+</html>
