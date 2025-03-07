@@ -73,11 +73,11 @@ class LandingController
         } catch (Exception $e) {
             $cartItems = [];
         }
-        $bestSellers = $this->productModel->getAllProducts();
+        $bestSellers = $this->productModel->getBestSellers();
         $allProducts = $this->productModel->getAllProducts();
         $clothing = $this->productModel->getProductsByCat("1");
 
-        $products = array_slice($bestSellers, 12, 3);
+        $products = $bestSellers;
         $last = array_slice($allProducts, 4, 8);
         $clothes = array_slice($clothing, 0, 3);
 

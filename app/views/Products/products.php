@@ -321,6 +321,8 @@
             });
         });
     </script>
+    <script src="/app/views/LandingPage/swiper.js"></script>
+
 </body>
 
 </html>

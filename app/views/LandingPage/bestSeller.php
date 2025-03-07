@@ -62,25 +62,7 @@
 
 
     <section class="prodect-cate">
-        <ul class="products-sec">
-            <button>
-                <li>All Products</li>
-            </button>
-            <button>
-                <li>Medical Clothing </li>
-            </button>
-            <button>
-                <li>Medical Supplies</li>
-            </button>
-            <button>
-                <li>Medical Equipment</li>
-            </button>
-            <button>
-                <li>Medical Accessories</li>
-            </button>
-        </ul>
-    </section>
-
+       
     <section class="bestseller-section-text">
         <h2>Best Sellers</h2>
     </section>
@@ -442,6 +424,7 @@
             }
         }
     </script>
+    <script src="/app/views/LandingPage/swiper.js"></script>
 
 </body>
 

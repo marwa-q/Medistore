@@ -26,6 +26,28 @@ class Product
         return $stmt->fetchAll(PDO::FETCH_ASSOC); // ✅ Return the result
     }
 
+    public function getBestSellers() {
+        $sql = "
+            SELECT 
+                p.*, 
+                SUM(oi.quantity) AS total_quantity 
+            FROM 
+                order_items oi 
+            JOIN 
+                products p ON oi.product_id = p.id 
+            GROUP BY 
+                oi.product_id 
+            ORDER BY 
+                total_quantity DESC 
+            LIMIT 3
+        ";
+    
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Get deleted products
     public function getDeletedProducts()
     {

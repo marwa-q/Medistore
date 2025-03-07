@@ -3,7 +3,7 @@ session_start();
 require_once "../config/database.php";
 require_once "../routes/Router.php";
 require_once "../app/controllers/Auth/AuthController.php";
-// require_once "../app/controllers/UserController.php";
+
 require_once "../app/controllers/AdminAnas/AdminOrdersController.php";
 require_once "../app/controllers/AdminAnas/AdminProductsController.php";
 require_once "../app/controllers/AdminHendi/AdminUsersController.php";
@@ -74,8 +74,16 @@ $router->addRoute("/product", function () use ($theProductController, $NavContro
     require_once __DIR__ . '/../app/views/Navbar/footer.php';
 });
 
-$router->addRoute("/profile", function () use ($authController) {
+$router->addRoute("/profile", function () use ($authController, $NavController) {
+    if ($_COOKIE['role'] === "user") {
+        $NavController->showNavBar();
+    }
     $authController->showUserSettings();
+});
+
+$router->addRoute("/contactus",function () use ($NavController){
+    $NavController->showNavBar();
+    require_once __DIR__. '/../app/views/landingPage/contactus.php';
 });
 
 $router->addRoute("/settings", function () use ($authController) {
@@ -162,11 +170,11 @@ $router->addRoute('/products/restore/:id', function ($id) use ($adminProductsCon
     $adminProductsController->restore($id);
 });
 
-$router->addRoute("/products/edit/:id",function ($id) use ($adminProductsController) {
+$router->addRoute("/products/edit/:id", function ($id) use ($adminProductsController) {
     $adminProductsController->updateProduct($id);
 });
 
-$router->addRoute("/products/update/:id",function ($id) use ($adminProductsController) {
+$router->addRoute("/products/update/:id", function ($id) use ($adminProductsController) {
     $adminProductsController->saveChangesUpdate($id);
 });
 //Heba
