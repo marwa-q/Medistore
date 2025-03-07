@@ -53,12 +53,17 @@ class Product
 
     public function getProductById($id)
     {
-        // Func::checkRegularAdmin();
-        $stmt = $this->db->prepare("SELECT * FROM products WHERE id = :id");
+        $stmt = $this->db->prepare("
+        SELECT p.*, c.name AS category_name 
+        FROM products p
+        LEFT JOIN categories c ON p.category_id = c.id
+        WHERE p.id = :id
+    ");
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
 
     public function softDeleteProduct($id)
     {
@@ -82,7 +87,7 @@ class Product
 
     public function getCart($customer_id)
     {
-        
+
         $stmt = $this->db->prepare("SELECT carts.*, products.name, products.price FROM carts 
                                     JOIN products ON carts.product_id = products.id 
                                     WHERE customer_id = ?");
@@ -151,5 +156,42 @@ class Product
         $stmt->bindParam(':customer_id', $userId);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_COLUMN); // Returns an array of product IDs
+    }
+
+    public function updateProduct($id, $data)
+    {
+        try {
+            // Prepare the SQL query to update the product
+            $stmt = $this->db->prepare("
+                UPDATE products 
+                SET 
+                    name = :name, 
+                    description = :description, 
+                    price = :price, 
+                    stock = :stock, 
+                    image_url = :image_url 
+                WHERE id = :id
+            ");
+
+            // Bind parameters
+            $stmt->bindParam(':name', $data['name']);
+            $stmt->bindParam(':description', $data['description']);
+            $stmt->bindParam(':price', $data['price']);
+            $stmt->bindParam(':stock', $data['stock']);
+            $stmt->bindParam(':image_url', $data['image_url']);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            // Execute the query
+            $stmt->execute();
+
+            // Return true if the update was successful
+            return true;
+        } catch (PDOException $e) {
+            // Log the error (you can replace this with your logging mechanism)
+            error_log("Error updating product: " . $e->getMessage());
+
+            // Return false if an error occurred
+            return false;
+        }
     }
 }

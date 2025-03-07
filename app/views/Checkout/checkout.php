@@ -28,20 +28,20 @@
                     </tr>
                 </thead>
                 <tbody id="cart-body">
+                    <?php
+                    $subtotal = 0; // Initialize subtotal
+                    foreach ($cartItems as $item):
+                        $total = $item['price'] * $item['quantity']; // Calculate total for each item
+                        $subtotal += $total; // Add to subtotal
+                    ?>
                     <tr>
-                        <td><img src="../images/sample-product.jpg" alt="Product 1" width="50"></td>
-                        <td>Sample Product 1</td>
-                        <td>$20.00</td>
-                        <td>2</td>
-                        <td>$40.00</td>
+                        <td><img src="<?= htmlspecialchars($item['image_url'] ?? '../images/sample-product.jpg') ?>" alt="<?= htmlspecialchars($item['name']) ?>" width="50"></td>
+                        <td><?= htmlspecialchars($item['name']) ?></td>
+                        <td>$<?= number_format($item['price'], 2) ?></td>
+                        <td><?= htmlspecialchars($item['quantity']) ?></td>
+                        <td>$<?= number_format($total, 2) ?></td>
                     </tr>
-                    <tr>
-                        <td><img src="../images/sample-product2.jpg" alt="Product 2" width="50"></td>
-                        <td>Sample Product 2</td>
-                        <td>$15.00</td>
-                        <td>1</td>
-                        <td>$15.00</td>
-                    </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </section>
@@ -52,19 +52,19 @@
                 <table>
                     <tr>
                         <td>Subtotal:</td>
-                        <td>$55.00</td>
+                        <td>$<?= number_format($subtotal, 2) ?></td>
                     </tr>
                     <tr>
                         <td>Total after discount:</td>
-                        <td>$55.00</td>
+                        <td>$<?= number_format($subtotal, 2) ?></td> <!-- Adjust if discounts are applied -->
                     </tr>
                     <tr>
                         <td>Shipping:</td>
-                        <td>$5.00</td>
+                        <td>$5.00</td> <!-- Fixed shipping cost -->
                     </tr>
                     <tr class="total-row">
                         <td><strong>Total:</strong></td>
-                        <td><strong>$60.00</strong></td>
+                        <td><strong>$<?= number_format($subtotal + 5, 2) ?></strong></td> <!-- Subtotal + Shipping -->
                     </tr>
                 </table>
                 <form action="/public/checkout" method="POST">

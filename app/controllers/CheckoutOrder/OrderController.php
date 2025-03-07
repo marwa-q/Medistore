@@ -68,6 +68,7 @@ class OrderController
             exit;
         }
 
+        $cartItems = $this->cartModel->getCartItems($_COOKIE['id']);
         require_once __DIR__ . '/../../views/Checkout/checkout.php';
     }
 }

@@ -162,6 +162,13 @@ $router->addRoute('/products/restore/:id', function ($id) use ($adminProductsCon
     $adminProductsController->restore($id);
 });
 
+$router->addRoute("/products/edit/:id",function ($id) use ($adminProductsController) {
+    $adminProductsController->updateProduct($id);
+});
+
+$router->addRoute("/products/update/:id",function ($id) use ($adminProductsController) {
+    $adminProductsController->saveChangesUpdate($id);
+});
 //Heba
 // $router->addRoute("/product", function () use ($productController, $NavController) {
 //     $NavController->showNavBar();
