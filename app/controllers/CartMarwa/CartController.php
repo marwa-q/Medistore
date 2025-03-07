@@ -13,14 +13,22 @@ class CartController
 
     public function showCart()
     {
-        $cartItems = $this->cartModel->getCart();
+        if (!isset($_COOKIE['id'])) {
+            header("Location: /public/login");
+            exit();
+        }
+
+        $cartItems = $this->cartModel->getCart($_COOKIE['id']);
         require_once __DIR__ . '/../../views/Cart/cart.php';
     }
 
-
-
     public function updateCart()
     {
+        if (!isset($_COOKIE['id'])) {
+            header("Location: /public/login");
+            exit();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $product_id = $_POST['product_id'] ?? null;
             $quantity = $_POST['quantity'] ?? 1;
@@ -33,8 +41,9 @@ class CartController
                 }
 
                 // ✅ Get updated cart count
-                $Count = $this->cartModel->getCartItemCount("1");
+                $Count = $this->cartModel->getCartItemCount($_COOKIE['id']);
                 $cartCount = count($Count);
+
                 // ✅ Return JSON response instead of redirecting
                 exit(json_encode([
                     "status" => "success",
@@ -56,10 +65,13 @@ class CartController
         ]));
     }
 
-
-
     public function addToCart()
     {
+        if (!isset($_COOKIE['id'])) {
+            header("Location: /public/login");
+            exit();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $product_id = $_POST['product_id'] ?? null;
             $quantity = $_POST['quantity'] ?? 1;
@@ -68,7 +80,7 @@ class CartController
                 $this->cartModel->addToCart($product_id, $quantity);
 
                 // ✅ Get updated cart count
-                $Count = $this->cartModel->getCartItemCount("1");
+                $Count = $this->cartModel->getCartItemCount($_COOKIE['id']);
                 $cartCount = count($Count);
 
                 // Return JSON response
@@ -94,6 +106,11 @@ class CartController
 
     public function removeFromCart()
     {
+        if (!isset($_COOKIE['id'])) {
+            header("Location: /public/login");
+            exit();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $product_id = $_POST['product_id'] ?? null;
 
@@ -101,8 +118,9 @@ class CartController
                 $this->cartModel->removeFromCart($product_id);
 
                 // ✅ Get updated cart count
-                $Count = $this->cartModel->getCartItemCount("1");
+                $Count = $this->cartModel->getCartItemCount($_COOKIE['id']);
                 $cartCount = count($Count);
+
                 // Return JSON response
                 exit(json_encode([
                     "status" => "success",
@@ -124,10 +142,14 @@ class CartController
         ]));
     }
 
-
     public function clearCart()
     {
-        $this->cartModel->clearCart();
+        if (!isset($_COOKIE['id'])) {
+            header("Location: /public/login");
+            exit();
+        }
+
+        $this->cartModel->clearCart($_COOKIE['id']);
         header("Location: /public/cart");
         exit();
     }

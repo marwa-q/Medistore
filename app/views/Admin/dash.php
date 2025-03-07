@@ -33,12 +33,14 @@ $currentPage = basename($_SERVER['REQUEST_URI']);
                 <span>Dashboard</span>
             </a>
         </li>
-        <li class="<?= ($currentPage == 'users') ? 'active' : ''; ?>">
-            <a href="/public/users">
-                <i class="fa-solid fa-users fa-lg"></i>
-                <span>Users</span>
-            </a>
-        </li>
+        <?php if (isset($_COOKIE['role']) && $_COOKIE['role'] === 'super admin'): ?>
+            <li class="<?= ($currentPage == 'users') ? 'active' : ''; ?>">
+                <a href="/public/users">
+                    <i class="fa-solid fa-users fa-lg"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+        <?php endif; ?>
         <li class="<?= ($currentPage == 'products') ? 'active' : ''; ?>">
             <a href="/public/products">
                 <i class="fa-solid fa-shopping-cart fa-lg"></i>

@@ -28,17 +28,13 @@ class Func
 
     public static function checkIfLoggedIn()
     {
-        if (isset($_COOKIE['username'], $_COOKIE['email'], $_COOKIE['id'], $_COOKIE['role'])) {
+        if (!isset($_COOKIE['username'], $_COOKIE['email'], $_COOKIE['id'], $_COOKIE['role'])) {
             if (self::preventRedirectLoop()) {
                 http_response_code(403);
                 error_log("403 Forbidden: User is already logged in.");
                 self::show403Page("You are already logged in.");
             }
         }
-    }
-
-    public static function handleFavorite($number){
-        return $number +1;
     }
 
     private static function preventRedirectLoop()

@@ -20,7 +20,7 @@ class Cart
 
     public function addToCart($product_id, $quantity)
     {
-        $customer_id = 1;
+        $customer_id = $_COOKIE['id'];
         $stmt = $this->db->prepare("SELECT id, quantity FROM carts WHERE customer_id = ? AND product_id = ?");
         $stmt->execute([$customer_id, $product_id]);
         $cartItem = $stmt->fetch();
@@ -37,7 +37,7 @@ class Cart
 
     public function getCart()
     {
-        $customer_id = 1;
+        $customer_id = $_COOKIE['id'];
         $stmt = $this->db->prepare("SELECT carts.*, products.name, products.price, products.image_url 
                             FROM carts 
                             JOIN products ON carts.product_id = products.id 
@@ -48,7 +48,7 @@ class Cart
 
     public function updateCart($product_id, $quantity)
     {
-        $customer_id = 1;
+        $customer_id = $_COOKIE['id'];
         if ($quantity > 0) {
             $stmt = $this->db->prepare("UPDATE carts SET quantity = ?, updated_at = NOW() WHERE customer_id = ? AND product_id = ?");
             return $stmt->execute([$quantity, $customer_id, $product_id]);
@@ -59,14 +59,14 @@ class Cart
 
     public function removeFromCart($product_id)
     {
-        $customer_id = 1;
+        $customer_id = $_COOKIE['id'];
         $stmt = $this->db->prepare("DELETE FROM carts WHERE customer_id = ? AND product_id = ?");
         return $stmt->execute([$customer_id, $product_id]);
     }
 
     public function clearCart()
     {
-        $customer_id = 1;
+        $customer_id = $_COOKIE['id'];
         $stmt = $this->db->prepare("DELETE FROM carts WHERE customer_id = ?");
         return $stmt->execute([$customer_id]);
     }

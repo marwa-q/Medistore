@@ -12,7 +12,12 @@ require_once "../app/controllers/ProductHeba/CategoryController.php";
 require_once "../app/controllers/ProductHeba/FavoriteController.php";
 require_once "../app/controllers/ProductHeba/ProductController.php";
 
+require_once "../app/controllers/NavController/ProductsController.php";
+
 require_once "../app/controllers/CartMarwa/CartController.php";
+
+require_once "../app/controllers/NavController/NavController.php";
+require_once "../app/controllers/NavController/LandingController.php";
 
 require_once "../app/controllers/CheckoutOrder/OrderController.php";
 
@@ -23,6 +28,8 @@ $AdminUsersController = new AdminUsersController($pdo);
 $adminProductsController = new AdminProductsController($pdo);
 $AdminOrdersController = new AdminOrdersController($pdo);
 
+$NavController = new NavController($pdo);
+$landingController = new LandingController($pdo);
 //Heba
 $productController = new ProductController($pdo);
 $FavoriteController = new FavoriteController($pdo);
@@ -33,6 +40,7 @@ $cartController = new CartController($pdo);
 
 $orderController = new OrderController($pdo);
 
+$theProductController = new ProductsController($pdo);
 
 // Test
 // $productController->showAllCategories();
@@ -42,11 +50,54 @@ $router->addRoute("/dashboard", function () {
 /****************************************************************/
 // Homepage Test Route
 
+$router->addRoute("/", function () use ($NavController, $landingController) {
+    $landingController->showLandingPage();
+    $NavController->showNavBar();
+    $landingController->showProductsBestSellers();
+    require_once __DIR__ . '/../app/views/LandingPage/additionalLanding.php';
+    require_once __DIR__ . '/../app/views/Navbar/footer.php';
+});
+
+$router->addRoute("/checkuser", function () use ($authController) {
+    $authController->checkUser();
+});
+
+$router->addRoute("/product/:id", function ($id) use ($theProductController, $NavController) {
+    $NavController->showNavBar();
+    $theProductController->showProductByCategory($id);
+    require_once __DIR__ . '/../app/views/Navbar/footer.php';
+});
+
+$router->addRoute("/product", function () use ($theProductController, $NavController) {
+    $NavController->showNavBar();
+    $theProductController->showProductByCategory(null);
+    require_once __DIR__ . '/../app/views/Navbar/footer.php';
+});
+
+$router->addRoute("/profile", function () use ($authController) {
+    $authController->showUserSettings();
+});
+
+$router->addRoute("/settings", function () use ($authController) {
+    $authController->showAdminSettings();
+});
+
+$router->addRoute("/aboutus", function () use ($NavController) {
+    $NavController->showNavBar();
+    require_once __DIR__ . '/../app/views/LandingPage/aboutme.php';
+    require_once __DIR__ . '/../app/views/Navbar/footer.php';
+});
+
+
+$router->addRoute("/updateAdmin", function () use ($authController) {
+    $authController->updateAdminSettings();
+});
+
 
 
 // Hendi 
 
-$router->addRoute("/admin/settings",function()use($authController){
+$router->addRoute("/admin/settings", function () use ($authController) {
     $authController->showAdminSettings();
 });
 $router->addRoute("/users", function () use ($AdminUsersController) {
@@ -72,6 +123,10 @@ $router->addRoute("/register", function () use ($authController) {
 
 $router->addRoute("/login", function () use ($authController) {
     $authController->login();
+});
+
+$router->addRoute("/logout", function () use ($authController) {
+    $authController->logout();
 });
 
 $router->addRoute("/orders", function () use ($AdminOrdersController) {
@@ -108,21 +163,23 @@ $router->addRoute('/products/restore/:id', function ($id) use ($adminProductsCon
 });
 
 //Heba
-$router->addRoute("/product", function () use ($productController) {
-    $productController->showAllCategories();
-    $productController->showProducts();
-});
+// $router->addRoute("/product", function () use ($productController, $NavController) {
+//     $NavController->showNavBar();
+//     // $productController->showAllCategories();
+//     // $productController->showProducts();
 
-$router->addRoute("/product/:id", function ($id) use ($productController) {
-    $productController->productsDepentOnCat($id);
-});
+// });
+
+// $router->addRoute("/product/:id", function ($id) use ($productController) {
+//     $productController->productsDepentOnCat($id);
+// });
 
 $router->addRoute("/product_details/:id", function ($id) use ($productController) {
     $productController->productDetails($id);
 });
 
 $router->addRoute("/favorite", function () use ($FavoriteController) {
-    $FavoriteController->showFavorites("1");
+    $FavoriteController->showFavorites();
 });
 
 $router->addRoute("/addtofavorites", function () use ($FavoriteController) {
@@ -160,6 +217,8 @@ $router->addRoute('/cart/clear', function () use ($cartController) {
 $router->addRoute('/checkout', function () use ($orderController) {
     $orderController->checkout();
 });
+
+
 
 $router->addRoute('/thank-you', function () {
     require_once __DIR__ . '/../app/views/Checkout/thank_you.php';

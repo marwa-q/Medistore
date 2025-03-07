@@ -121,7 +121,7 @@ html {
 
     <script>
         function navigateToIndex() {
-            window.location.href = "../index.html";
+            window.location.href = "/public/";
         }
     </script>
 

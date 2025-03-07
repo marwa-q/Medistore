@@ -123,7 +123,7 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
         function updateFavoriteCount(count) {
             const favoriteButton = document.getElementById("favoriteButton");
             if (favoriteButton) {
-                favoriteButton.querySelector("span").innerText = `Favorites (${count})`;
+                favoriteButton.querySelector("span").innerText = `${count}`;
             }
         }
 
@@ -172,7 +172,7 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
         function updateCartCount(count) {
             const cartButton = document.getElementById("cartButton");
             if (cartButton) {
-                cartButton.querySelector("span").innerText = `Cart (${count})`;
+                cartButton.querySelector("span").innerText = `${count}`;
             }
         }
     </script>

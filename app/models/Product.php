@@ -80,9 +80,9 @@ class Product
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getCart()
+    public function getCart($customer_id)
     {
-        $customer_id = 1;
+        
         $stmt = $this->db->prepare("SELECT carts.*, products.name, products.price FROM carts 
                                     JOIN products ON carts.product_id = products.id 
                                     WHERE customer_id = ?");
@@ -90,9 +90,8 @@ class Product
         return $stmt->fetchAll();
     }
 
-    public function getCartProductIds()
+    public function getCartProductIds($customer_id)
     {
-        $customer_id = 1;
         $stmt = $this->db->prepare("SELECT product_id FROM carts WHERE customer_id = ?");
         $stmt->execute([$customer_id]);
         return $stmt->fetchAll(PDO::FETCH_COLUMN);

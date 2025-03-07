@@ -14,11 +14,28 @@ class ProductController
 
     public function showProducts()
     {
+        $userId = $_COOKIE['id'] ?? null; // Check if cookie exists
+
+        try {
+            $favoriteProductIds = $userId ? $this->productModel->getFavoritesByUser($userId) : [];
+        } catch (Exception $e) {
+            $favoriteProductIds = [];
+        }
+
+        try {
+            $cartProductIds = $userId ? $this->productModel->getCartItemCount($userId) : [];
+        } catch (Exception $e) {
+            $cartProductIds = [];
+        }
+
+        try {
+            $cartItems = $userId ? $this->productModel->getCart($userId) : [];
+        } catch (Exception $e) {
+            $cartItems = [];
+        }
+
         $products = $this->productModel->getAllProducts();
-        $favoriteProductIds = $this->productModel->getFavoritesByUser("1");
-        $cartItems = $this->productModel->getUserCartItems("1");
-        $cartItems = $this->productModel->getCart();
-        $cartProductIds = $this->productModel->getCartProductIds();
+        // $cartItems = $this->productModel->getCart();
         require __DIR__ . "/../../views/products.php"; // Load the products view
     }
 
@@ -31,11 +48,29 @@ class ProductController
 
     public function productsDepentOnCat($id)
     {
-        $cartItems = $this->productModel->getUserCartItems("1");
-        $cartItems = $this->productModel->getCart();
-        $cartProductIds = $this->productModel->getCartProductIds();
+        $userId = $_COOKIE['id'] ?? null; // Check if cookie exists
+
+        try {
+            $favoriteProductIds = $userId ? $this->productModel->getFavoritesByUser($userId) : [];
+        } catch (Exception $e) {
+            $favoriteProductIds = [];
+        }
+
+        try {
+            $cartProductIds = $userId ? $this->productModel->getCartItemCount($userId) : [];
+        } catch (Exception $e) {
+            $cartProductIds = [];
+        }
+
+        try {
+            $cartItems = $userId ? $this->productModel->getCart($userId) : [];
+        } catch (Exception $e) {
+            $cartItems = [];
+        }
+
+
         $products = $this->productModel->getProductsByCat($id);
-        $favoriteProductIds = $this->productModel->getFavoritesByUser("1");
+
         require __DIR__ . "/../../views/products.php"; // Load the products view
     }
 
@@ -44,8 +79,10 @@ class ProductController
 
     public function productDetails($id)
     {
+
+        
         $product = $this->productModel->getProductById($id);
-        $favoriteProductIds = $this->productModel->getFavoritesByUser("1");
+        $favoriteProductIds = $this->productModel->getFavoritesByUser($_COOKIE['id'] ?? null);
 
 
         if ($product) {
@@ -61,10 +98,25 @@ class ProductController
 
     public function showAllCategories()
     {
+        
+        $userId = $_COOKIE['id'] ?? null; // Check if cookie exists
+
+        try {
+            $favoriteProductIds = $userId ? $this->productModel->getFavoritesByUser($userId) : [];
+        } catch (Exception $e) {
+            $favoriteProductIds = [];
+        }
+
+        try {
+            $CartProductId = $userId ? $this->productModel->getCartItemCount($userId) : [];
+        } catch (Exception $e) {
+            $CartProductId = [];
+        }
+
         $cats = $this->productModel->getAllCategories();
-        $favoriteProductIds = $this->productModel->getFavoritesByUser("1");
+        // $favoriteProductIds = $this->productModel->getFavoritesByUser($_COOKIE['id'] ?? null);
         // print_r($favoriteProductIds);
-        $CartProductId = $this->productModel->getCartItemCount("1");
+        // $CartProductId = $this->productModel->getCartItemCount($_COOKIE['id'] ?? null);
         // $CartProductId = count($CartProductId);
         // print_r($CartProductId);
         // print_r($favoriteProductIds);
@@ -80,7 +132,7 @@ class ProductController
     }
     public function addToFavorites($userId, $productId)
     {
-        $result = $this->productModel->addProductToFavorites($userId, $productId);
+        $result = $this->productModel->addProductToFavorites($_COOKIE['id'] ?? null, $productId);
         return $result ? "Product added to favorites" : "Failed to add to favorites";
     }
 }

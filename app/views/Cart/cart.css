@@ -74,7 +74,7 @@ td {
   justify-content: center;
 }
 
-.quantity button {
+.btn-minus , .btn-plus {
   padding: 5px 10px;
   border: none;
   background-color: #f0f0f0;
@@ -218,7 +218,7 @@ img {
   color: var(--dark-grey);
 }
 
-.checkout-btn {
+#checkout-btn {
   width: 30%;
   padding: 10px;
   margin: 0 auto;
@@ -227,8 +227,9 @@ img {
   border: none;
   cursor: pointer;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 8px;
 }
+
 .btn:hover {
   background: #0056b3;
 }
