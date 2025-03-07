@@ -73,10 +73,10 @@ class Cart
 
     public function getCartItems($customerId)
     {
-        $sql = "SELECT c.id, c.product_id, c.quantity, p.name, p.price 
-            FROM carts c
-            JOIN products p ON c.product_id = p.id
-            WHERE c.customer_id = ?";
+        $sql = "SELECT c.id, c.product_id, c.quantity, p.name, p.price, p.image_url 
+                FROM carts c
+                JOIN products p ON c.product_id = p.id
+                WHERE c.customer_id = ?";
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$customerId]);

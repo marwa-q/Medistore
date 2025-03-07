@@ -84,17 +84,37 @@ class Admin
     }
 
 
-    public function updateOrderItemQuantity($orderId, $productId, $newQuantity)
-    {
-        echo Func::checkRegularAdmin();
-        $stmt = $this->db->prepare("UPDATE order_items SET quantity = :quantity WHERE order_id = :order_id AND product_id = :product_id");
-        $stmt->execute([':quantity' => $newQuantity, ':order_id' => $orderId, ':product_id' => $productId]);
+    public function updateOrderItemQuantity($orderId, $productId, $newQuantity, $status)
+{
+    echo Func::checkRegularAdmin();
 
-        // Log the action
-        $logStmt = $this->db->prepare("INSERT INTO order_edit_logs (order_id, action, details) VALUES (:order_id, 'Updated Quantity', :details)");
-        $logStmt->execute([
-            ':order_id' => $orderId,
-            ':details' => "Updated product ID $productId to quantity $newQuantity in order $orderId"
-        ]);
-    }
+    // Update the order item quantity
+    $stmt = $this->db->prepare("UPDATE order_items SET quantity = :quantity WHERE order_id = :order_id AND product_id = :product_id");
+    $stmt->execute([
+        ':quantity' => $newQuantity,
+        ':order_id' => $orderId,
+        ':product_id' => $productId
+    ]);
+
+    // Update the order status
+    $statusStmt = $this->db->prepare("UPDATE orders SET status = :status WHERE id = :order_id");
+    $statusStmt->execute([
+        ':status' => $status,
+        ':order_id' => $orderId
+    ]);
+
+    // Log the action for quantity update
+    $logStmt = $this->db->prepare("INSERT INTO order_edit_logs (order_id, action, details) VALUES (:order_id, 'Updated Quantity', :details)");
+    $logStmt->execute([
+        ':order_id' => $orderId,
+        ':details' => "Updated product ID $productId to quantity $newQuantity in order $orderId"
+    ]);
+
+    // Log the action for status update
+    $logStmt = $this->db->prepare("INSERT INTO order_edit_logs (order_id, action, details) VALUES (:order_id, 'Updated Status', :details)");
+    $logStmt->execute([
+        ':order_id' => $orderId,
+        ':details' => "Updated status to $status for order $orderId"
+    ]);
+}
 }
