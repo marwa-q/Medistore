@@ -1,0 +1,1513 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  list-style-type: none;
+  scroll-behavior: smooth;
+  font-family: "Open Sans", sans-serif;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+:root {
+  --darkBlue: #1e3a8a;
+  --light-blue: #009cff;
+  --Medium-blue: #3b82f6;
+  --danger-red: #dc3545;
+  --dark-grey: #333333;
+  --black: #000000;
+  --white: #ffffff;
+  --soft-grey: #f5f5f5;
+}
+
+/*relode page***********************************************/
+#spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 1s ease-out, visibility 0s linear 1s;
+}
+
+/* إخفاء السبينر بعد التحميل */
+#spinner.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* تأثير عند إخفاء السبينر */
+.fade-in {
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* أنيميشن السبينر */
+@keyframes spinner-grow {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.spinner-grow {
+  width: 3rem;
+  height: 3rem;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  opacity: 0;
+  animation: spinner-grow 0.75s linear infinite;
+  /* إضافة الظل */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* إبقاء المحتوى مرئيًا ولكن إخفاؤه مؤقتًا أثناء التحميل */
+.content {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  font-size: 10px;
+}
+
+
+
+/* Navbar start ***********************************************/
+:root {
+  --darkBlue: #1e3a8a;
+  --light-blue: #009cff;
+  --white: #ffffff;
+  --black: #000000;
+  --dark-grey: #333333;
+  --danger-red: #dc3545;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  padding: 15px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--light-blue);
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+/* الروابط */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: var(--darkBlue);
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.nav-links a:hover {
+  color: var(--light-blue);
+}
+
+/* أيقونات */
+.icon-nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-right: 20px;
+}
+
+.icon-nav i {
+  color: var(--darkBlue);
+  font-size: 25px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.icon-nav i:hover {
+  color: var(--light-blue);
+}
+
+/* تغيير لون القلب عند التحويم */
+.icon-nav i.fa-heart:hover {
+  color: var(--danger-red);
+}
+
+/* زر القائمة المتجاوبة (Burger Menu) */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--darkBlue);
+}
+
+/* 📱 استجابة للأجهزة الصغيرة */
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: var(--white);
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    padding: 10px 0;
+  }
+
+  /* جعل الأيقونات بجانب بعضها حتى في الأجهزة الصغيرة */
+  .icon-nav {
+    position: absolute;
+    top: 15px;
+    right: 60px;
+    gap: 10px;
+  }
+
+  .icon-nav i {
+    font-size: 22px;
+    padding: 5px;
+  }
+}
+/* تنسيق أيقونة السلة */
+.cart-icon {
+  position: relative;
+  font-size: 25px;
+  color: var(--darkBlue); /* يمكنك تعديل اللون هنا */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+/* تنسيق الرقم داخل الأيقونة */
+.cart-icon .cart-count {
+  position: absolute;
+  top: -8px; /* تحريك الرقم إلى الأعلى */
+  right: -5px; /* تحريك الرقم إلى اليمين */
+  background-color: #ff4d4d; /* اللون الأحمر للعدد */
+  color: white;
+  border-radius: 50%;
+  padding: 3px 4px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* 📱 استجابة للأجهزة الأصغر (الموبايلات) */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: var(--white);
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    padding: 10px 0;
+  }
+
+  .dropdown-menu {
+    position: relative;
+    display: block;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    top: 0;
+  }
+
+  .dropdown-menu a {
+    color: var(--white);
+  }
+
+  /* جعل الأيقونات أسفل القائمة وبجوار بعضها */
+  .icon-nav {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--white);
+    padding: 10px 0;
+  }
+
+  .icon-nav i {
+    font-size: 24px;
+    padding: 10px;
+  }
+}
+
+/* Navbar end */
+/* Hero Start **************************/
+
+/*
+.main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(https://png.pngtree.com/thumb_back/fw800/background/20220326/pngtree-dental-equipment-and-implements-found-in-a-dentists-clinic-photo-image_16816470.jpg);
+    text-align: center;
+    padding: 20px;
+}*/
+
+.main-section {
+  position: relative;
+  padding: 30px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+/* السلايدر */
+.swiper-container {
+  width: 400px;
+  height: 450px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* الأزرار */
+.swiper-button-next,
+.swiper-button-prev {
+  font-size: 10px;
+  width: 3px;
+  height: 3px;
+
+  padding: 20px;
+  z-index: 2;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  transform: scaleX(1.7);
+  color: darkblue;
+  opacity: 1;
+}
+.swiper-button-next::after {
+  font-size: 25px;
+}
+.swiper-button-prev::after {
+  font-size: 25px;
+}
+/* الخلفية */
+.main-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(https://png.pngtree.com/thumb_back/fw800/background/20220326/pngtree-dental-equipment-and-implements-found-in-a-dentists-clinic-photo-image_16816470.jpg)
+    center/cover no-repeat;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* النص */
+.main_content {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  margin-left: 20px;
+  z-index: 2;
+}
+.main_text {
+  position: relative;
+  padding-left: 20px;
+  z-index: 2;
+  font-size: 80px;
+  line-height: 90px;
+  font-family: "Pyxidium Quick", sans-serif;
+  background: linear-gradient(to right, #1e3a8a, #009cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main_text h2 {
+  text-align: left;
+  font-size: 70px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.span-store {
+  font-size: 60px;
+  background: linear-gradient(to right, #1e3a8a, #009cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-p {
+  font-size: 18px;
+  color: var(--white);
+  max-width: 600px;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+/* زر */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--white);
+  font-size: 18px;
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 20px 30px;
+  border-radius: 30px;
+  background: linear-gradient(to right, #1e3a8a, #009cff);
+  z-index: 2;
+  position: relative;
+  margin-top: 15px;
+  margin-left: 20px;
+  padding-left: 30px;
+  width: fit-content;
+}
+
+.button a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.button i {
+  color: white;
+  margin-left: 5px;
+  transition: 0.3s;
+}
+
+/* تحريك الأيقونة عند التحويم */
+.button:hover i {
+  transform: translateX(6px);
+}
+
+/* 📱 ريسبونسيف للأجهزة اللوحية (تابلت) */
+@media (max-width: 1024px) {
+  .main-section {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+    padding-top: 100px;
+  }
+
+  .main_text {
+    font-size: 60px;
+    line-height: 70px;
+    text-align: center;
+  }
+
+  .main_text h2 {
+    font-size: 50px;
+  }
+
+  .span-store {
+    font-size: 45px;
+  }
+
+  .main-p {
+    font-size: 16px;
+    max-width: 80%;
+    margin: auto;
+  }
+
+  .swiper-container {
+    width: 80%;
+    height: auto;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 20px auto;
+  }
+}
+
+/* 📱 ريسبونسيف للأجهزة الصغيرة (الموبايلات) */
+@media (max-width: 768px) {
+  .main-section {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+    padding-top: 100px;
+  }
+
+  .main_content {
+    padding-left: 0;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .main_text {
+    font-size: 45px;
+    line-height: 55px;
+    text-align: center;
+  }
+
+  .main_text h2 {
+    font-size: 35px;
+  }
+
+  .span-store {
+    font-size: 30px;
+  }
+
+  .main-p {
+    font-size: 14px;
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .swiper-container {
+    width: 90%;
+    height: auto;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 8px 16px;
+    margin: 15px auto;
+  }
+}
+
+/*Hero end*****************************************/
+/* Featurs Section Start *****************************/
+.features-section {
+  margin-top: 50px;
+  padding: 50px 0;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.features-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap; /* يسمح بالتكيف مع الشاشات الصغيرة */
+  max-width: 1200px;
+  margin: auto;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 220px; /* عرض الكارد */
+  height: 250px; /* ارتفاع الكارد */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 2px solid #b1cfe1; /* لون الإطار */
+  transition: 0.3s ease-in-out;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px); /* تأثير عند التحويم */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card img {
+  width: 70px; /* حجم الصورة */
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+.feature-card h3 {
+  font-size: 22px;
+  color: #1e3a8a;
+  margin-bottom: 5px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: #555;
+  padding-top: 5px;
+}
+
+/* جعل التصميم متجاوباً */
+@media (max-width: 768px) {
+  .features-container {
+    justify-content: center;
+  }
+  .feature-card {
+    width: 180px;
+    height: 230px;
+  }
+}
+
+/* Featurs Section end *****************************/
+
+/* product Section start*****************************/
+section {
+  text-align: center;
+  margin: 40px 0;
+}
+
+/* تنسيق العنوان */
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #1e3a8a;
+}
+
+/* تنسيق القائمة */
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.products-sec {
+  list-style: none;
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+/* تنسيق الأزرار */
+ul button {
+  background: white;
+  border: 2px solid #009cff;
+  color: #009cff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* عند تمرير الماوس */
+ul button:hover {
+  background: #009cff;
+  color: white;
+}
+
+/* عند النقر على الزر */
+ul button.active {
+  background: #1e3a8a;
+  color: white;
+  border-color: #1e3a8a;
+}
+
+/*<!-- product Section start -->*********************/
+.product-section {
+  margin-top: 70px;
+
+  padding: 50px 0;
+  background-color: #f9f9f9;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 كروت في كل صف */
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.product-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: 2px solid transparent;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 2 15px 25px rgba(0, 0, 0, 0.2);
+  border-color: #009cff;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card img:hover {
+  transform: scale(1.05);
+}
+
+.product-card h2 {
+  font-size: 20px;
+  color: #1e3a8a;
+  margin: 10px 0;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  color: #009cff;
+  font-weight: bold;
+}
+
+/* ستايل الأزرار */
+.product-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  gap: 5px; /* مسافة بين العناصر */
+  flex-wrap: wrap;
+}
+
+.cart-btn {
+  background: linear-gradient(to right, #1e3a8a, #009cff);
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-btn:hover {
+  background: #1e3a8a;
+}
+
+/* ستايل أيقونة القلب */
+.wishlist {
+  font-size: 16px;
+  color: #ff4d4d;
+  transition: 0.3s;
+}
+
+.wishlist:hover {
+  color: #d63333;
+  transform: scale(1.2);
+}
+/* تأثير عند الضغط على القلب */
+.wishlist i {
+  transition: color 0.3s ease-in-out;
+}
+
+/* تعديل زر السلة بعد النقر */
+.cart-btn {
+  transition: all 0.3s ease-in-out;
+}
+
+/* تصميم متجاوب للشاشات الصغيرة */
+
+/* 📱 للأجهزة اللوحية (تابلت) */
+@media (max-width: 1200px) {
+  .product-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 كروت في الصف */
+  }
+}
+
+@media (max-width: 992px) {
+  .product-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 كروت في الصف */
+    gap: 15px;
+  }
+}
+
+/* 📱 للأجهزة الصغيرة (الموبايلات) */
+@media (max-width: 768px) {
+  .product-container {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* عرض كرتين في الصف للشاشات الصغيرة */
+    gap: 10px;
+    padding: 0 10px; /* تقليل الهوامش */
+  }
+}
+
+/* 📱 للأجهزة الأصغر (شاشات الهاتف الصغيرة جداً) */
+@media (max-width: 480px) {
+  .product-container {
+    grid-template-columns: repeat(1, 1fr); /* عرض كرت واحد فقط في الصف */
+    gap: 10px;
+  }
+
+  .product-card {
+    padding: 15px;
+  }
+
+  .product-card h2 {
+    font-size: 18px;
+  }
+
+  .product-card p {
+    font-size: 12px;
+  }
+
+  .product-card h3 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 992px) {
+  .product-actions {
+    justify-content: center; /* جعل الأزرار في المنتصف */
+  }
+
+  .cart-btn {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .wishlist {
+    font-size: 16px;
+  }
+}
+
+/* ✅ للأجهزة الصغيرة (الموبايل) */
+@media (max-width: 768px) {
+  .product-actions {
+    flex-direction: column; /* الأزرار تنزل تحت بعض */
+    align-items: center;
+  }
+
+  .cart-btn {
+    font-size: 14px;
+    padding: 10px 14px;
+    width: 90%; /* جعل الأزرار تأخذ عرض مناسب */
+  }
+
+  .wishlist {
+    font-size: 16px;
+  }
+}
+
+/* ✅ للأجهزة الأصغر (شاشات الهاتف الصغيرة جدًا) */
+@media (max-width: 480px) {
+  .cart-btn {
+    font-size: 13px;
+    padding: 8px 12px;
+    width: 100%; /* الزر يأخذ العرض بالكامل */
+  }
+
+  .wishlist {
+    font-size: 14px;
+  }
+}
+/*<!-- product Section end -->*********************/
+
+/* start FOOTER SECTION *******************************************/
+
+footer.section {
+  background-color: #1e3a8a; /* لون أزرق غامق */
+  color: white;
+  padding: 50px 0;
+}
+
+footer .container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* تنسيق القسم الأول (الشعار + الوصف + السوشيال ميديا) */
+footer .logo h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #009cff; /* لون متناسق */
+}
+
+footer .content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 10px;
+  max-width: 400px;
+}
+
+/* تنسيق أيقونات التواصل الاجتماعي */
+.social-list {
+  margin-top: 15px;
+}
+
+.social-item {
+  display: inline-block;
+  font-size: 22px;
+  margin-right: 10px;
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+
+.social-item:hover {
+  color: #009cff; /* تغيير اللون عند تمرير الماوس */
+}
+
+/* تنسيق قائمة الروابط */
+.footer-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-menu li {
+  margin-bottom: 8px;
+}
+
+.footer-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-menu a:hover {
+  color: #009cff; /* تغيير اللون عند تمرير الماوس */
+}
+
+/* تنسيق حقوق النشر */
+.copyright {
+  text-align: center;
+  background-color: #162a5a; /* أزرق غامق أكثر */
+  color: white;
+  padding: 15px 0;
+  font-size: 14px;
+}
+/* END FOOTER SECTION *******************************************/
+
+/* testimonial-section ********************************************/
+.testimonial-section {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: var(--soft-grey);
+  position: relative;
+}
+
+.testimonial-section h2 {
+  font-size: 36px;
+  color: var(--darkBlue);
+  margin-bottom: 30px;
+}
+
+/* Testimonial Slider */
+.testimonial-slider {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  transition: transform 1s ease-in-out; /* Slow transition for slider movement */
+}
+
+.testimonial-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.testimonial-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.testimonial-card h3 {
+  font-size: 24px;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+.products_star i {
+  color: #ffd700;
+  margin-right: 5px;
+}
+
+.testimonial-card p {
+  font-size: 16px;
+  color: #555;
+  margin-top: 15px;
+}
+
+/* Navigation Buttons */
+.prev-btn,
+.next-btn {
+  color: var(--light-blue);
+  border-radius: 60%;
+  border: none;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.prev-btn {
+  left: 20px;
+}
+
+.next-btn {
+  right: 20px;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background-color: darkblue;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .testimonial-card {
+    width: 250px;
+  }
+}
+
+/* Section Styles */
+
+/* Bestsellers Section */
+.bestseller-section {
+  padding: 60px 20px;
+  background-color: #f4f4f4;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.bestseller-section--text h2 {
+  background-color: var(--white);
+  font-size: 28px;
+  color: #003366;
+  margin-bottom: 30px;
+}
+
+/* Container for Bestseller Items */
+.bestseller-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Single Bestseller Item */
+.bestseller-item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  width: 350px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.bestseller-item:hover {
+  transform: translateY(-10px);
+}
+
+/* Product Image */
+.bestseller-image img {
+  width: 120px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+/* Product Details */
+.bestseller-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Product Name */
+.bestseller-name {
+  font-size: 22px;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+/* Product Description */
+.bestseller-description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Product Price */
+.bestseller-price {
+  font-size: 18px;
+  color: var(--light-blue);
+  margin-bottom: 15px;
+}
+
+/* Star Rating */
+.bestseller-rating i {
+  color: #ffd700;
+  margin: 0 2px;
+}
+
+/* Actions (Add to Cart, Wishlist) */
+.bestseller-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.bestseller-cart-btn {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bestseller-cart-btn:hover {
+  background-color: #2ecc71;
+}
+
+/* Wishlist Icon */
+.bestseller-wishlist i {
+  font-size: 18px;
+  color: #e74c3c;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.bestseller-wishlist i:hover {
+  color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bestseller-item {
+    width: 100%;
+    max-width: 300px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bestseller-image {
+    margin-bottom: 15px;
+  }
+}
+
+/* Styling the section */
+/* ستايل السكشن */
+.aditional.section {
+  background-color: #b9dcf2; /* لون الخلفية الأزرق */
+  padding: 60px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* لجعل التصميم مرنًا للأجهزة الصغيرة */
+  color: var(--darkBlue);
+}
+
+/* الصورة على اليسار */
+.img-aditional {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.img-aditional img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* النصوص على اليمين، فوق بعض */
+.text-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.h1-aditional {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.h4-aditional {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.p-aditional {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* زر الشراء */
+.button-aditional {
+  background: none;
+  border: 2px solid white;
+  color: darkblue;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* عند تحريك الماوس على الزر */
+.button-aditional:hover {
+  background-color: #005f8a;
+  color: white;
+}
+
+/* 📱 استجابة للأجهزة المختلفة */
+/* الأجهزة اللوحية */
+@media (max-width: 1024px) {
+  .h1-aditional {
+    font-size: 28px;
+  }
+
+  .h4-aditional {
+    font-size: 18px;
+  }
+
+  .p-aditional {
+    font-size: 16px;
+  }
+
+  .button-aditional {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+/* الهواتف المحمولة */
+@media (max-width: 768px) {
+  .aditional.section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .img-aditional {
+    width: 100%;
+    justify-content: center;
+    order: -1; /* جعل الصورة تظهر فوق النصوص */
+  }
+
+  .img-aditional img {
+    max-width: 80%;
+  }
+
+  .text-container {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkblue;
+  border-radius: 3rem;
+}
+::-webkit-scrollbar-track {
+  background-color: white;
+  margin-block: -0.4rem;
+  border-radius: 3rem;
+}
+
+/*more-details ***************/
+.more-details {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+}
+
+/* ستايل كل كارد */
+.div-more-details {
+  display: flex;
+  flex-direction: column;
+  width: 28%; /* تقليل العرض قليلاً */
+  height: 420px; /* زيادة الارتفاع */
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: var(--soft-grey);
+}
+
+/* الصورة تأخذ النصف العلوي */
+.div-more-details img {
+  width: 100%;
+  height: 220px; /* زيادة ارتفاع الصورة */
+  object-fit: cover;
+}
+
+/* النصف السفلي مع لون مختلف لكل كارد */
+.text-more-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  height: 200px; /* زيادة ارتفاع النص */
+}
+
+/* ألوان مختلفة لكل كارد */
+.div-more-details:nth-child(1) .text-more-details {
+  background-color: var(--Medium-blue);
+  color: var(--white);
+}
+
+.div-more-details:nth-child(2) .text-more-details {
+  background-color: var(--darkBlue);
+  color: var(--white);
+}
+
+.div-more-details:nth-child(3) .text-more-details {
+  background-color: var(--light-blue);
+  color: var(--black);
+}
+
+/* النص داخل بوردر واحد */
+.text-box {
+  border: 2px solid var(--white);
+  padding: 10px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+/* 📱 استجابة للأجهزة الصغيرة */
+@media (max-width: 1024px) {
+  .div-more-details {
+    width: 40%; /* تقليل العرض للأجهزة المتوسطة */
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .more-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .div-more-details {
+    width: 90%;
+    height: auto;
+  }
+
+  .div-more-details img {
+    height: 250px;
+  }
+
+  .text-more-details {
+    height: auto;
+    padding: 30px;
+  }
+}
+
+:root {
+  --darkBlue: #1e3a8a;
+  --light-blue: #009cff;
+  --Medium-blue: #3b82f6;
+  --danger-red: #dc3545;
+  --dark-grey: #333333;
+  --black: #000000;
+  --white: #ffffff;
+  --soft-grey: #f5f5f5;
+}
+
+.medical-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--soft-grey);
+}
+
+.text-medical {
+  font-size: 28px;
+  color: var(--darkBlue);
+  margin-bottom: 20px;
+}
+
+/* 🔹 كروت المنتجات */
+.medical-section > div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* 🔹 تصميم الكارد */
+.medical-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🔸 تأثير الهوفر على الكارد */
+.medical-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 الصورة داخل الكارد */
+.medical-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 🔸 تأثير الهوفر على الصورة */
+.medical-card img:hover {
+  transform: scale(1.05);
+}
+
+/* 🔹 نص المنتج */
+.medical-name {
+  font-size: 22px;
+  color: var(--dark-grey);
+  margin: 10px 0;
+}
+
+/* 🔹 الوصف */
+.medical-card p {
+  font-size: 14px;
+  color: var(--black);
+  margin-bottom: 10px;
+}
+
+/* 🔹 السعر */
+.medical-card h3 {
+  color: var(--light-blue);
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* 📱 استجابة للأجهزة الصغيرة */
+@media (max-width: 768px) {
+  .medical-section > div {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .medical-card {
+    width: 90%;
+  }
+  .products-sec {
+    flex-direction: column;
+  }
+}
