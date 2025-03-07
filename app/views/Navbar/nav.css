@@ -673,11 +673,7 @@ ul button:hover {
 }
 
 /* عند النقر على الزر */
-ul button.active {
-  background: #1e3a8a;
-  color: white;
-  border-color: #1e3a8a;
-}
+
 
 /*<!-- product Section start -->*********************/
 .product-section {

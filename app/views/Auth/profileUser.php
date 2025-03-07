@@ -13,11 +13,53 @@
             flex: 0 0 auto;
             /* Prevent buttons from growing or shrinking */
         }
+
+        .nav-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: inherit;
+            text-decoration: none;
+            padding: 8px 12px;
+            transition: 0.3s ease-in-out;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .nav-button i {
+            font-size: 18px;
+            position: relative;
+        }
+
+        .cart-count {
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+        }
     </style>
 </head>
 
 <body class="bg-light">
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 72px;">
         <ul class="nav nav-tabs" id="profileTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab">Profile</button>
@@ -167,6 +209,8 @@
             });
         });
     </script>
+    <script src="/app/views/LandingPage/swiper.js"></script>
+
 </body>
 
 </html>

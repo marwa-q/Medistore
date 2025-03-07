@@ -57,6 +57,15 @@
             top: -5px;
             right: -10px;
         }
+
+        .nav-links a.active {
+            color: #009cff;
+            /* Blue color for active link */
+            font-weight: bold;
+            /* Bold text for active link */
+            border-bottom: 2px solid #009cff;
+            /* Underline effect */
+        }
     </style>
 </head>
 
@@ -69,8 +78,8 @@
 
     <!-- nav start-->
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="navbar-logo">MediStore</a>
+        <nav class="navbar fixed-top">
+            <a href="/public/" class="navbar-logo">MediStore</a>
 
 
 
@@ -79,11 +88,32 @@
                 <i class="fa fa-bars"></i>
             </div>
 
+            <?php
+            // Get the current URL path
+            $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            ?>
+
             <ul class="nav-links">
-                <li><a href="/public/" style="color: #009cff;">Home</a></li>
-                <li><a href="/public/product">Products</a></li>
-                <li><a href="/public/aboutus">About Us</a></li>
-                <li><a href="..\html\products.html">Contact Us</a></li>
+                <li>
+                    <a href="/public/" class="<?= ($currentPath === '/public/') ? 'active' : '' ?>">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/public/product" class="<?= ($currentPath === '/public/product') ? 'active' : '' ?>">
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a href="/public/aboutus" class="<?= ($currentPath === '/public/aboutus') ? 'active' : '' ?>">
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="/public/contactus" class="<?= ($currentPath === '/public/contactus') ? 'active' : '' ?>">
+                        Contact Us
+                    </a>
+                </li>
             </ul>
 
             <div class="icon-nav">
