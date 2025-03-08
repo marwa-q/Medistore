@@ -378,9 +378,9 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url(https://png.pngtree.com/thumb_back/fw800/background/20220326/pngtree-dental-equipment-and-implements-found-in-a-dentists-clinic-photo-image_16816470.jpg)
-    center/cover no-repeat;
-  opacity: 0.3;
+  background: url(https://img.freepik.com/free-photo/confident-attractive-male-doctor-wearing-white-lab-coat-while-standing-with-arms-crossed-against-turquoise-background_662251-1654.jpg?t=st=1741371561~exp=1741375161~hmac=d548d28632d4184d877db68b81cae1bbf462c53422fa90ed76424c313948581d&w=2000)
+    left bottom/cover no-repeat;
+  background-size: 140% auto;
   z-index: 1;
 }
 
@@ -399,7 +399,7 @@ html {
   font-size: 80px;
   line-height: 90px;
   font-family: "Pyxidium Quick", sans-serif;
-  background: linear-gradient(to right, #1e3a8a, #009cff);
+  background: var(--darkBlue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
