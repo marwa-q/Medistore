@@ -58,7 +58,7 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="https://media.zid.store/f628e75e-d909-47fd-8141-0db600326e6a/2021c1ad-0ec0-45b8-85d3-36dc388d7cb5.jpg" alt="Image 1"></div>
-                <div class="swiper-slide"><img style="background:  linear-gradient(to bottom, rgba(176, 210, 235, 0.7) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(176, 210, 235, 0.7) 100%), ;" src="/app/views/LandingPage/img/شسيبلات-removebg-preview.png" alt="Image 2"></div>
+                <div class="swiper-slide"><img style="background:  linear-gradient(to bottom, rgba(176, 210, 235, 0.7) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(176, 210, 235, 0.7) 100%), ;" src="/app/views/LandingPage/img/dfm.png" alt="Image 2"></div>
                 <div class="swiper-slide"><img style="background: radial-gradient(circle, #e0eff8 40%, #b2d2ea 100%);" src="/app/views/LandingPage/img/blacscrap-removebg-preview.png" alt=""></div>
                 <div class="swiper-slide"><img src="https://images.pexels.com/photos/12585206/pexels-photo-12585206.jpeg" alt="Image 1"></div>
             </div>

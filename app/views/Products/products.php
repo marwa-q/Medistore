@@ -109,7 +109,7 @@
     <!-- Spinner End -->
 
 
-    <section style=" margin: 100px 50px;">
+    <section class="prodect-cate" style=" margin: 100px 50px;">
         <h2>Our Products</h2>
         <ul>
             <form action="/public/product" method="POST">
