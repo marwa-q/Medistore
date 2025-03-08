@@ -43,35 +43,28 @@
                 <tbody id="cart-body">
                     <?php foreach ($cartItems as $item) : ?>
                         <tr data-product-id="<?= $item['product_id'] ?>">
-                            <td><img src="<?= $item['image_url']?>" alt="Product Image"></td>
+                            <td><img src="<?= $item['image_url'] ?>" alt="Product Image"></td>
                             <td><?= htmlspecialchars($item['name']) ?></td>
                             <td>$<?= number_format($item['price'], 2) ?></td>
-                            <td class="cart-quantity"> <?= $item['quantity'] ?></td>
+                            <td class="cart-quantity">
+                                <button class="btn-minus cart-update-btn" data-product-id="<?= $item['product_id'] ?>" data-quantity="<?= $item['quantity'] - 1 ?>">−</button>
+                                <?= $item['quantity'] ?>
+                                <button class="btn-plus cart-update-btn" data-product-id="<?= $item['product_id'] ?>" data-quantity="<?= $item['quantity'] + 1 ?>">+</button>
+                            </td>
                             <td class="cart-total">$<?= number_format($item['price'] * $item['quantity'], 2) ?></td>
                             <td>
-                                <button class="btn-minus cart-update-btn" data-product-id="<?= $item['product_id'] ?>" data-quantity="<?= $item['quantity'] - 1 ?>">−</button>
-                                <button class="btn-plus cart-update-btn" data-product-id="<?= $item['product_id'] ?>" data-quantity="<?= $item['quantity'] + 1 ?>">+</button>
-                                <button class="btn-trash cart-remove-btn" data-product-id="<?= $item['product_id'] ?>">🗑️</button>
+                                <button onclick="confirmRemove(this)" class="btn-trash cart-remove-btn" data-product-id="<?= $item['product_id'] ?>">🗑️</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </section>
-        <section id="coupon-section">
-            <div class="coupon-container">
-                <input name="coupon" type="text" id="couponCode" placeholder="Enter coupon code">
-                <button onclick="applyCoupon()">Apply</button>
-                <p id="couponMessage"></p>
-            </div>
-        </section>
-        <form action="/public/checkout" method="post">
+
+        <form id="checkout-btn" action="/public/checkout" method="post">
             <button class="checkout-btn" id="checkout-btn">Checkout</button>
         </form>
     </main>
-
-
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Handle quantity update (increase/decrease)
@@ -100,28 +93,66 @@
             });
 
             // Handle item removal
-            document.querySelectorAll(".cart-remove-btn").forEach(button => {
-                button.addEventListener("click", function() {
-                    const productId = this.getAttribute("data-product-id");
 
-                    fetch("/public/cart/remove", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/x-www-form-urlencoded"
-                            },
-                            body: `product_id=${productId}`
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.status === "success") {
-                                window.location.reload();
-                            } else {
-                                alert(data.message);
-                            }
-                        })
-                        .catch(error => console.error("Error:", error));
-                });
-            });
+            window.confirmRemove = function(button) {
+                let modal = document.getElementById("confirmModal");
+                modal.style.display = "flex";
+
+                let productId = button.getAttribute("data-product-id"); // Get product ID from button
+
+                document.getElementById("confirmYes").onclick = function() {
+                    removeItem(productId); // Pass the product ID to removeItem
+                    modal.style.display = "none";
+                };
+
+                document.getElementById("confirmNo").onclick = function() {
+                    modal.style.display = "none";
+                };
+            }
+
+            function removeItem(productId) {
+                fetch("/public/cart/remove", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: `product_id=${productId}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "success") {
+                            window.location.reload();
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            }
+
+            // function removeItem(){
+            //     document.querySelectorAll(".cart-remove-btn").forEach(button => {
+            //     button.addEventListener("click", function() {
+            //         const productId = this.getAttribute("data-product-id");
+
+            //         fetch("/public/cart/remove", {
+            //                 method: "POST",
+            //                 headers: {
+            //                     "Content-Type": "application/x-www-form-urlencoded"
+            //                 },
+            //                 body: `product_id=${productId}`
+            //             })
+            //             .then(response => response.json())
+            //             .then(data => {
+            //                 if (data.status === "success") {
+            //                     window.location.reload();
+            //                 } else {
+            //                     alert(data.message);
+            //                 }
+            //             })
+            //             .catch(error => console.error("Error:", error));
+            //     });
+            // });
+            // }
 
             // Handle clear cart
             document.getElementById("clear-cart-btn").addEventListener("click", function() {

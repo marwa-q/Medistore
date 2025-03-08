@@ -33,16 +33,24 @@ $currentPage = basename($_SERVER['REQUEST_URI']);
                 <span>Dashboard</span>
             </a>
         </li>
-        <li class="<?= ($currentPage == 'users') ? 'active' : ''; ?>">
-            <a href="/public/users">
-                <i class="fa-solid fa-users fa-lg"></i>
-                <span>Users</span>
-            </a>
-        </li>
+        <?php if (isset($_COOKIE['role']) && $_COOKIE['role'] === 'super admin'): ?>
+            <li class="<?= ($currentPage == 'users') ? 'active' : ''; ?>">
+                <a href="/public/users">
+                    <i class="fa-solid fa-users fa-lg"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+        <?php endif; ?>
         <li class="<?= ($currentPage == 'products') ? 'active' : ''; ?>">
             <a href="/public/products">
                 <i class="fa-solid fa-shopping-cart fa-lg"></i>
                 <span>Products</span>
+            </a>
+        </li>
+        <li class="<?= ($currentPage == 'addNewProduct') ? 'active' : ''; ?>">
+            <a href="/public/addNewProduct">
+                <i class="fa-solid fa-cart-plus fa-lg"></i>
+                <span>Add Product</span>
             </a>
         </li>
         <li class="<?= ($currentPage == 'orders') ? 'active' : ''; ?>">
@@ -51,11 +59,13 @@ $currentPage = basename($_SERVER['REQUEST_URI']);
                 <span>Orders</span>
             </a>
         </li>
+
         <li class="<?= ($currentPage == 'settings') ? 'active' : ''; ?>">
             <a href="/public/settings">
                 <i class="fas fa-cog fa-lg"></i>
                 <span>Settings</span>
             </a>
         </li>
+
     </ul>
 </div>

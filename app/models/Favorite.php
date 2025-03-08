@@ -52,6 +52,6 @@ class Favorite
         $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['count'] ?? 0;
+        return (int) ($result['count'] ?? 0);
     }
 }

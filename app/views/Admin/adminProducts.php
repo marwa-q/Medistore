@@ -107,7 +107,7 @@
                                 <td><?= htmlspecialchars(date("Y-m-d H:i", strtotime($product['created_at']))) ?></td>
                                 <td><?= htmlspecialchars(date("Y-m-d H:i", strtotime($product['updated_at']))) ?></td>
                                 <td>
-                                    <a href="/products/edit/<?= $product['id'] ?>" class="btn btn-sm edit-btn">
+                                    <a href="/public/products/edit/<?= $product['id'] ?>" class="btn btn-sm edit-btn">
                                         <i class="fa-solid fa-pen"></i>
                                     </a>
                                     <form method="post" action="/public/products/delete/<?= $product['id'] ?>" class="delete-product-form d-inline" data-id="<?= $product['id'] ?>" id="delete-form-<?= $product['id'] ?>">

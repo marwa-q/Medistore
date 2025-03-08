@@ -34,7 +34,7 @@ class Admin
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-   
+
 
     public function getOrderItems($orderId)
     {
@@ -61,7 +61,7 @@ class Admin
 
 
 
-   
+
 
     public function deleteOrderItem($orderId, $productId)
     {
@@ -83,18 +83,67 @@ class Admin
         return false; // No row deleted
     }
 
+    public function addProduct($name, $price, $description, $quantity, $category_id, $image_url)
+    {
+        try {
+            // Prepare the SQL query
+            $stmt = $this->db->prepare("
+                INSERT INTO products 
+                (name, price, description, stock, category_id, image_url, created_at, updated_at) 
+                VALUES 
+                (:name, :price, :description, :stock, :category_id, :image_url, NOW(), NOW())
+            ");
 
-    public function updateOrderItemQuantity($orderId, $productId, $newQuantity)
+            // Execute the query with all parameters
+            $stmt->execute([
+                ':name' => $name,
+                ':price' => $price,
+                ':description' => $description,
+                ':stock' => $quantity,
+                ':category_id' => $category_id,
+                ':image_url' => $image_url
+            ]);
+
+            // Return the last inserted ID
+            return $this->db->lastInsertId();
+        } catch (PDOException $e) {
+            // Log the error or handle it as needed
+            error_log("Error adding product: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function updateOrderItemQuantity($orderId, $productId, $newQuantity, $status)
     {
         echo Func::checkRegularAdmin();
-        $stmt = $this->db->prepare("UPDATE order_items SET quantity = :quantity WHERE order_id = :order_id AND product_id = :product_id");
-        $stmt->execute([':quantity' => $newQuantity, ':order_id' => $orderId, ':product_id' => $productId]);
 
-        // Log the action
+        // Update the order item quantity
+        $stmt = $this->db->prepare("UPDATE order_items SET quantity = :quantity WHERE order_id = :order_id AND product_id = :product_id");
+        $stmt->execute([
+            ':quantity' => $newQuantity,
+            ':order_id' => $orderId,
+            ':product_id' => $productId
+        ]);
+
+        // Update the order status
+        $statusStmt = $this->db->prepare("UPDATE orders SET status = :status WHERE id = :order_id");
+        $statusStmt->execute([
+            ':status' => $status,
+            ':order_id' => $orderId
+        ]);
+
+        // Log the action for quantity update
         $logStmt = $this->db->prepare("INSERT INTO order_edit_logs (order_id, action, details) VALUES (:order_id, 'Updated Quantity', :details)");
         $logStmt->execute([
             ':order_id' => $orderId,
             ':details' => "Updated product ID $productId to quantity $newQuantity in order $orderId"
+        ]);
+
+        // Log the action for status update
+        $logStmt = $this->db->prepare("INSERT INTO order_edit_logs (order_id, action, details) VALUES (:order_id, 'Updated Status', :details)");
+        $logStmt->execute([
+            ':order_id' => $orderId,
+            ':details' => "Updated status to $status for order $orderId"
         ]);
     }
 }

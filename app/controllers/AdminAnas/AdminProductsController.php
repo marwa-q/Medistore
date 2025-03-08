@@ -28,6 +28,32 @@ class AdminProductsController
         }
     }
 
+    public function saveChangesUpdate($id) {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // Sanitize and validate input data
+            $data = [
+                'name' => htmlspecialchars($_POST['name']),
+                'description' => htmlspecialchars($_POST['description']),
+                'price' => floatval($_POST['price']),
+                'stock' => intval($_POST['stock']),
+                'image_url' => htmlspecialchars($_POST['image_url']), // Placeholder for now
+            ];
+    
+            $success = $this->productModel->updateProduct($id, $data);
+    
+            if ($success) {
+                header("Location: /public/products");
+                exit;
+            } else {
+                echo "Failed to update product";
+            }
+        }
+    }
+    public function updateProduct($id){
+        $product = $this->productModel->getProductById($id);
+        require __DIR__. "/../../views/admin/editProduct.php";
+    }
+
     public function restore($id)
     {
         if ($this->productModel->restoreProduct($id)) {

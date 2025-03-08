@@ -55,7 +55,7 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
             font-weight: bold;
         }
 
-        /* Cart Button Styling */
+        /* Cart Button Styling
         #cartButton {
             font-size: 1.2rem;
             color: #1E3A8A;
@@ -86,13 +86,13 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
             height: 20px;
             filter: invert(0);
             /* Keeps the image blue */
-            transition: filter 0.3s ease-in-out;
-        }
+            /* transition: filter 0.3s ease-in-out;
+        } */
 
-        #cartButton:hover img {
+        /* #cartButton:hover img {
             filter: invert(1);
             /* Turns the image white */
-        }
+        /* }  */
 
         /* User Icon with Login Text */
         .login-container {
@@ -137,6 +137,7 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
 </head>
 
 <body class="container mt-4 position-relative">
+    
     <a href="<?= $baseUrl ?>/login" class="login-container">
         <img src="../../assets/user-icon.svg" alt="User Icon">
         <span>Login</span>
@@ -147,14 +148,14 @@ $baseUrl = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']);
         <form action="<?= $baseUrl ?>/favorite" method="POST" style="display:inline;">
             <button type="submit" class="heart-button" id="favoriteButton">
                 <img src="../../assets/heart-svgrepo-com.svg" alt="Heart">
-                <span>Favorites (<?= count($favoriteProductIds) ?>)</span>
+                <span><?= count($favoriteProductIds) ?></span>
             </button>
         </form>
 
         <form action="<?= $baseUrl ?>/cart" method="POST" style="display:inline;">
             <button type="submit" class="heart-button" id="cartButton">
                 <img src="../../assets/shopping-cart-outline-svgrepo-com.svg" alt="Cart">
-                <span>Cart (<?= count($CartProductId) ?>)</span>
+                <span><?= count($CartProductId) ?></span>
             </button>
         </form>
     </div>
