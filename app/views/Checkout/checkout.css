@@ -178,6 +178,42 @@ footer {
   background-color: var(--dark-grey);
 }
 
+.coupon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.coupon-container input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 400px;
+}
+
+.coupon-container button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  background-color: var(--darkBlue);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.coupon-container button:hover {
+  background-color: var(--Medium-blue);
+}
+
+#couponMessage {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
 /* Responsive Design */
 
 /* Tablets (768px - 1024px) */
@@ -233,7 +269,18 @@ footer {
     flex-direction: column;
     align-items: center;
   }
+  .coupon-container {
+    flex-direction: column;
+    gap: 5px;
+  }
 
+  .coupon-container input {
+    width: 90%;
+  }
+
+  .coupon-container button {
+    width: 50%;
+  }
   input {
     font-size: 14px;
   }
@@ -280,7 +327,13 @@ footer {
   #placeOrderBtn {
     height: 40px;
   }
+  .coupon-container input {
+    width: 90%;
+  }
 
+  .coupon-container button {
+    width: 90%;
+  }
   th,
   td {
     padding: 6px;

@@ -20,7 +20,9 @@ require_once "../app/controllers/NavController/NavController.php";
 require_once "../app/controllers/NavController/LandingController.php";
 
 require_once "../app/controllers/CheckoutOrder/OrderController.php";
+require_once "../app/controllers/Copon/CoponController.php";
 
+$coponController = new CoponController($pdo);
 
 $router = new Router();
 $authController = new AuthController($pdo);
@@ -79,6 +81,10 @@ $router->addRoute("/profile", function () use ($authController, $NavController) 
         $NavController->showNavBar();
     }
     $authController->showUserSettings();
+});
+
+$router->addRoute("/copon", function () use ($coponController) {
+    $coponController->applyCoupon();
 });
 
 $router->addRoute("/contactus",function () use ($NavController){
