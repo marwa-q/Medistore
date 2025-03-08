@@ -59,12 +59,12 @@ class OrderController
                     if ($validationResult['success']) {
                         // Apply the discount
                         $discountValue = $validationResult['coupon']['discount_value'];
-                        $totalAmount -= (($totalAmount * $discountValue) / 100) - 5;
+                        $totalAmount -= (($totalAmount * $discountValue) / 100);
                     }
                 }
 
                 // Create order with the discounted total
-                $orderId = $this->orderModel->createOrder($customerId, $totalAmount);
+                $orderId = $this->orderModel->createOrder($customerId, ($totalAmount + 5));
 
                 // Record coupon usage if a coupon was applied
                 if ($couponCode && $validationResult['success']) {

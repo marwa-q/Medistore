@@ -71,7 +71,7 @@ class ProductController
 
         $products = $this->productModel->getProductsByCat($id);
 
-        require __DIR__ . "/../../views/products.php"; // Load the products view
+        require __DIR__ . "/../../views/Products/products.php"; // Load the products view
     }
 
 
@@ -79,17 +79,25 @@ class ProductController
 
     public function productDetails($id)
     {
+        $product = $this->productModel->getProductByIdOnly($id);
+        $userId = $_COOKIE['id'] ?? null; // Check if cookie exists
 
-        
-        $product = $this->productModel->getProductById($id);
-        $favoriteProductIds = $this->productModel->getFavoritesByUser($_COOKIE['id'] ?? null);
+        try {
+            $favoriteProductIds = $userId ? $this->productModel->getFavoritesByUser($userId) : [];
+        } catch (Exception $e) {
+            $favoriteProductIds = [];
+        }
 
+        try {
+            $cartProductIds = $userId ? $this->productModel->getCartItemCount($userId) : [];
+        } catch (Exception $e) {
+            $cartProductIds = [];
+        }
 
         if ($product) {
             require __DIR__ . "/../../views/product_detalis.php";
         } else {
-            echo "Product not found!";
-            require __DIR__ . "/../../views/products.php";
+            echo "<script>window.location.href = '/public/product'</script>";
         }
     }
 
@@ -98,7 +106,7 @@ class ProductController
 
     public function showAllCategories()
     {
-        
+
         $userId = $_COOKIE['id'] ?? null; // Check if cookie exists
 
         try {

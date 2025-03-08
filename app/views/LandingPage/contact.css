@@ -27,7 +27,7 @@ html {
   
   /* Hero Section */
   #contact-hero {
-    background-image: url(../img/contact.jpg);
+    background-image: url(/app/views/LandingPage/img/contact.jpg);
     height: 50vh;
     background-size: cover;
     background-position: center;

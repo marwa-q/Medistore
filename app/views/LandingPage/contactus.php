@@ -18,10 +18,176 @@
 
     <link rel="stylesheet" href="/app/views/LandingPage/contact.css">
     <link rel="stylesheet" href="/app/views/Navbar/nav.css">
+    <style>
+        /* Blur background when modal is open */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1001;
+        }
+
+        .modal-content {
+            padding: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .login-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #ff4747;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .testimonial-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, #f0f4f8, #e6ecf3);
+            /* تحسين الخلفية */
+            position: relative;
+        }
+
+        .testimonial-section h2 {
+            font-size: 36px;
+            color: var(--darkBlue);
+            margin-bottom: 40px;
+        }
+
+        /* Slider */
+        .testimonial-slider {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            transition: transform 0.8s ease-in-out;
+            /* تحسين تأثير الانزلاق */
+        }
+
+        .testimonial-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            width: 280px;
+            box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* تأثير عند التحويم */
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid var(--light-blue);
+            /* إطار حول الصورة */
+        }
+
+        .testimonial-card h3 {
+            font-size: 22px;
+            color: #003366;
+            margin-bottom: 8px;
+        }
+
+        .products_star i {
+            color: #ffd700;
+            margin-right: 3px;
+        }
+
+        .testimonial-card p {
+            font-size: 15px;
+            color: #444;
+            margin-top: 10px;
+        }
+
+        /* أزرار التنقل */
+        .prev-btn,
+        .next-btn {
+            background: var(--light-blue);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            font-size: 18px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .prev-btn:hover,
+        .next-btn:hover {
+            background-color: #003366;
+        }
+
+        /* ضبط أماكن الأزرار */
+        .prev-btn {
+            left: 15px;
+        }
+
+        .next-btn {
+            right: 15px;
+        }
+
+        /* التصميم على الهواتف */
+        @media (max-width: 768px) {
+            .testimonial-card {
+                width: 230px;
+                padding: 20px;
+            }
+
+            .prev-btn,
+            .next-btn {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
+        /* Section Styles */
+    </style>
 </head>
 
 <body>
-    
+
     <!-- Hero Section -->
     <section id="contact-hero">
         <div class="hero-content">
@@ -64,52 +230,56 @@
     </section>
 
     <!-- ٍstart FOOTER SECTION -->
-    <footer class="bg-dark text-white py-5">
+    <footer class="section">
         <div class="container">
             <div class="row">
-                <!-- Brand and Social Links -->
-                <div class="col-md-9 col-sm-12 mb-4">
+                <div class="col-9 col-md-9 col-sm-12">
                     <div class="content">
-                        <a href="#" class="text-decoration-none">
-                            <h2 class="text-white">Medestore</h2>
+                        <a href="#" class="logo">
+                            <h2>Medestore</h2>
                         </a>
-                        <p class="text-muted">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, magni.
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
+                            magni.
                         </p>
                         <div class="social-list">
-                            <a href="#" class="text-white me-3">
-                                <i class="fab fa-facebook fa-lg"></i>
+                            <a href="#" class="social-item">
+                                <i class="fa-brands fa-facebook"></i>
                             </a>
-                            <a href="#" class="text-white me-3">
-                                <i class="fab fa-twitter fa-lg"></i>
+                            <a href="#" class="social-item">
+                                <i class="fa-brands fa-twitter"></i>
                             </a>
-                            <a href="#" class="text-white">
-                                <i class="fab fa-linkedin fa-lg"></i>
+                            <a href="#" class="social-item">
+                                <i class="fa-brands fa-linkedin"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Quick Links -->
-                <div class="col-md-3 col-sm-12">
-                    <div class="content">
-                        <p class="fw-bold">Medestore</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><a href="html/aboutus.html" class="text-white text-decoration-none">About us</a></li>
-                            <li class="mb-2"><a href="pages/profile.html" class="text-white text-decoration-none">My profile</a></li>
-                            <li class="mb-2"><a href="html/aboutus.html" class="text-white text-decoration-none">Services</a></li>
-                            <li><a href="pages/contactUs.html" class="text-white text-decoration-none">Contact Us</a></li>
-                        </ul>
+                <div class="col-3 col-md-3 col-sm-12">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-sm-12">
+                            <div class="content">
+                                <p><b>Medestore</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="html/aboutus.html">About us</a></li>
+                                    <li><a href="pages/profile.html">My profile</a></li>
+                                    <li><a href="html/aboutus.html">Services</a></li>
+                                    <li><a href="pages/contactUs.html">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+    <!-- END FOOTER SECTION -->
+    <!-- COPYRIGHT SECTION -->
+    <div class="copyright">&copy; 2025 Medistore | All Rights Reserved</div>
+    <!-- END COPYRIGHT SECTION -->
 
     <!-- Copyright Section -->
-    <div class="bg-black text-white text-center py-3">
-        &copy; 2025 Medistore | All Rights Reserved
-    </div>
+
     <script>
         window.onload = function() {
             document.getElementById("form").reset(); // Clear fields on load

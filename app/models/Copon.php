@@ -65,16 +65,16 @@ class Copon
         $updateStmt->execute([':coupon_id' => $couponId]);
 
         // Step 2: Record the coupon usage in the coupon_usages table
-        //     $insertQuery = "
-        //     INSERT INTO coupon_usages (coupon_id, order_id, customer_id, used_at) 
-        //     VALUES (:coupon_id, :order_id, :customer_id, NOW())
-        // ";
-        //     $insertStmt = $this->db->prepare($insertQuery);
-        //     $insertStmt->execute([
-        //         ':coupon_id' => $couponId,
-        //         ':order_id' => $orderId,
-        //         ':customer_id' => $_COOKIE["id"]
-        //     ]);
+            $insertQuery = "
+            INSERT INTO coupon_usages (coupon_id, order_id, customer_id, used_at) 
+            VALUES (:coupon_id, :order_id, :customer_id, NOW())
+        ";
+            $insertStmt = $this->db->prepare($insertQuery);
+            $insertStmt->execute([
+                ':coupon_id' => $couponId,
+                ':order_id' => $orderId,
+                ':customer_id' => $_COOKIE["id"]
+            ]);
 
         return ['success' => true, 'message' => 'Coupon usage decremented and recorded successfully.'];
     }

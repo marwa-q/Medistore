@@ -86,6 +86,24 @@ class Product
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getProductByIdOnly($id)
+{
+    // Prepare the SQL query to select only product details
+    $stmt = $this->db->prepare("
+        SELECT *
+        FROM products
+        WHERE id = :id
+    ");
+
+    // Bind the ID parameter
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+    // Execute the query
+    $stmt->execute();
+
+    // Fetch the product as an associative array
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
     public function softDeleteProduct($id)
     {
