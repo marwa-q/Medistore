@@ -83,6 +83,20 @@
             text-decoration: none;
             border-radius: 5px;
         }
+
+        .product-card {
+            cursor: pointer;
+            /* Change cursor to pointer on hover */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* Optional: Add hover effects */
+        }
+
+        .product-card:hover {
+            transform: scale(1.02);
+            /* Optional: Slightly scale up on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Optional: Add shadow on hover */
+        }
     </style>
 
 </head>
@@ -133,11 +147,10 @@
 
 
     <section class="product-section">
-
         <div class="product-container">
             <?php foreach ($products as $product): ?>
                 <div class="product-card">
-                    <img src="<?= htmlspecialchars($product['image_url']); ?>" alt="<?= htmlspecialchars($product['name']); ?>">
+                    <img src="<?= $product['image_url']; ?>" alt="<?= htmlspecialchars($product['name']); ?>" onclick="r(<?= $product['id'] ?>)">
                     <h2><?= htmlspecialchars($product['name']); ?></h2>
                     <p><?= htmlspecialchars($product['description']); ?></p>
                     <h3><?= htmlspecialchars($product['price']); ?> JD</h3>
@@ -146,7 +159,6 @@
                         <?php $isLoggedIn = isset($_COOKIE['id']); ?>
 
                         <!-- Add to Cart Button -->
-                        <!-- Cart Button -->
                         <?php if (in_array($product['id'], $cartProductIds)): ?>
                             <form action="/public/cart/remove" method="POST" class="cart-form <?= !$isLoggedIn ? 'login-required' : '' ?>">
                                 <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['id']); ?>">
@@ -179,7 +191,6 @@
                                 </button>
                             </form>
                         <?php endif; ?>
-
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -196,7 +207,11 @@
 
     <!-- Overlay Background -->
     <div id="overlay"></div>
-
+    <script>
+        function r(productId) {
+            window.location.href = '/public/productr/' + productId;
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.cart-form').forEach(form => {

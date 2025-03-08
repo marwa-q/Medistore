@@ -47,17 +47,25 @@ $currentPage = basename($_SERVER['REQUEST_URI']);
                 <span>Products</span>
             </a>
         </li>
+        <li class="<?= ($currentPage == 'addNewProduct') ? 'active' : ''; ?>">
+            <a href="/public/addNewProduct">
+                <i class="fa-solid fa-cart-plus fa-lg"></i>
+                <span>Add Product</span>
+            </a>
+        </li>
         <li class="<?= ($currentPage == 'orders') ? 'active' : ''; ?>">
             <a href="/public/orders">
                 <i class="fa-solid fa-box fa-lg"></i>
                 <span>Orders</span>
             </a>
         </li>
+
         <li class="<?= ($currentPage == 'settings') ? 'active' : ''; ?>">
             <a href="/public/settings">
                 <i class="fas fa-cog fa-lg"></i>
                 <span>Settings</span>
             </a>
         </li>
+
     </ul>
 </div>

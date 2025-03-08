@@ -7,6 +7,7 @@ require_once "../app/controllers/Auth/AuthController.php";
 require_once "../app/controllers/AdminAnas/AdminOrdersController.php";
 require_once "../app/controllers/AdminAnas/AdminProductsController.php";
 require_once "../app/controllers/AdminHendi/AdminUsersController.php";
+require_once "../app/controllers/AdminAnas/AdminAddProductsController.php";
 
 require_once "../app/controllers/ProductHeba/CategoryController.php";
 require_once "../app/controllers/ProductHeba/FavoriteController.php";
@@ -29,6 +30,7 @@ $authController = new AuthController($pdo);
 $AdminUsersController = new AdminUsersController($pdo);
 $adminProductsController = new AdminProductsController($pdo);
 $AdminOrdersController = new AdminOrdersController($pdo);
+$AdminAddProductsController = new AdminAddProductsController($pdo);
 
 $NavController = new NavController($pdo);
 $landingController = new LandingController($pdo);
@@ -64,11 +66,11 @@ $router->addRoute("/checkuser", function () use ($authController) {
     $authController->checkUser();
 });
 
-$router->addRoute("/product/:id", function ($id) use ($theProductController, $NavController) {
-    $NavController->showNavBar();
-    $theProductController->showProductByCategory($id);
-    require_once __DIR__ . '/../app/views/Navbar/footer.php';
-});
+// $router->addRoute("/product/:id", function ($id) use ($theProductController, $NavController) {
+//     $NavController->showNavBar();
+//     $theProductController->showProductByCategory($id);
+//     require_once __DIR__ . '/../app/views/Navbar/footer.php';
+// });
 
 $router->addRoute("/product", function () use ($theProductController, $NavController) {
     $NavController->showNavBar();
@@ -87,13 +89,22 @@ $router->addRoute("/copon", function () use ($coponController) {
     $coponController->applyCoupon();
 });
 
-$router->addRoute("/contactus",function () use ($NavController){
+$router->addRoute("/contactus", function () use ($NavController) {
     $NavController->showNavBar();
-    require_once __DIR__. '/../app/views/landingPage/contactus.php';
+    require_once __DIR__ . '/../app/views/landingPage/contactus.php';
 });
 
 $router->addRoute("/settings", function () use ($authController) {
     $authController->showAdminSettings();
+});
+
+$router->addRoute("/addNewProduct", function () use ($AdminAddProductsController) {
+    $AdminAddProductsController->showAddingPage();
+});
+
+
+$router->addRoute("/add/newProduct", function () use ($AdminAddProductsController) {
+    $AdminAddProductsController->AddProduct();
 });
 
 $router->addRoute("/aboutus", function () use ($NavController) {
@@ -191,11 +202,13 @@ $router->addRoute("/products/update/:id", function ($id) use ($adminProductsCont
 
 // });
 
-// $router->addRoute("/product/:id", function ($id) use ($productController) {
-//     $productController->productsDepentOnCat($id);
-// });
+$router->addRoute("/product/:id", function ($id) use ($productController, $NavController) {
+    $NavController->showNavBar();
+    $productController->productsDepentOnCat($id);
+});
 
-$router->addRoute("/product_details/:id", function ($id) use ($productController) {
+$router->addRoute("/productr/:id", function ($id) use ($productController, $NavController) {
+    $NavController->showNavBar();
     $productController->productDetails($id);
 });
 
