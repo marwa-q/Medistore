@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  list-style-type: none;
+  scroll-behavior: smooth;
+  font-family: "Open Sans", sans-serif;
+}
+body {
+  display: flex;
+}
+.sidebar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 110px;
+  height: 100vh;
+  padding: 0 1.7rem;
+  color: #fff;
+  overflow: hidden;
+  transition: all 0.5s linear;
+  background: #1e3a8a;
+}
+.sidebar:hover {
+  width: 240px;
+  transition: 0.5s;
+}
+.logo {
+  height: 80px;
+  padding: 16px;
+}
+.menu {
+  height: 88%;
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+.menu li {
+  padding: 1rem;
+  margin: 8px 0;
+  border-radius: 8px;
+  transition: all 0.5s ease-in-out;
+}
+.menu li:hover,
+.active {
+  background: #009cff;
+}
+.menu a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.menu a span {
+  overflow: hidden;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f1f5f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* تحسين مساحة المحتوى */
+.main--content {
+  padding: 30px;
+  max-width: 95%;
+  margin: auto;
+}
+
+/* تحسين الهيدر */
+.header--wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.header--title h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.header--title span {
+  font-size: 16px;
+  color: #7f8c8d;
+}
+
+/* تصميم البطاقات */
+.card--container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card--wrapper {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* تحسين شكل البطاقات */
+.payment--card {
+  background: linear-gradient(135deg, #0077b6, #0093e9);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  width: calc(25% - 15px);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: white;
+}
+
+/* تأثير عند التحويم */
+.payment--card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card--header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.amount {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.amount--value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* تحسين الأيقونات */
+.icon {
+  font-size: 30px;
+  opacity: 0.8;
+}
+
+/* تنسيق النسبة المئوية */
+.card--detail {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #dff9fb;
+}
+
+/* تحسين القسم الرئيسي */
+#content-area {
+  margin-top: 30px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* استجابة للشاشات الصغيرة */
+@media (max-width: 1024px) {
+  .payment--card {
+    width: calc(50% - 15px);
+  }
+}
+
+@media (max-width: 768px) {
+  .header--wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .card--container {
+    flex-direction: column;
+  }
+
+  .payment--card {
+    width: 100%;
+  }
+}
