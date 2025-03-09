@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Medistore</title>
     <link rel="stylesheet" href="/app/views/NavBar/nav.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -60,10 +60,13 @@
         <!-- Swiper Container -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="/app/views/LandingPage/img/acc2.png" alt="Image 1"></div>
+                <div class="swiper-slide"><img src="/app/views/LandingPage/img/img11.jpg" alt="Image 1"></div>
+                <div class="swiper-slide"><img src="/app/views/LandingPage/img/img22.jpg" alt="Image 1"></div>
+                <div class="swiper-slide"><img src="/app/views/LandingPage/img/img33.jpg" alt="Image 1"></div>
+
+
                 <div class="swiper-slide"><img src="/app/views/LandingPage/img/Acc.jpg" alt="Image 2"></div>
                 <div class="swiper-slide"><img style="background: radial-gradient(circle, #e0eff8 40%, #b2d2ea 100%);" src="/app/views/LandingPage/img/blacscrap-removebg-preview.png" alt=""></div>
-                <div class="swiper-slide"><img src="https://images.pexels.com/photos/12585206/pexels-photo-12585206.jpeg" alt="Image 1"></div>
             </div>
 
             <!-- Navigation Buttons -->

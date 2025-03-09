@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Medistore</title>
     <style>
         /* Blur background when modal is open */
         #overlay {
@@ -306,8 +306,11 @@
         </section>
 
 
-
+        <section class="bestseller-section-text">
+            <h2>Available Coupones</h2>
+        </section>
         <section class="more-details">
+        
 
             <div class="div-more-details">
                 <img

@@ -6,12 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .con {
+            margin: 5rem;
+            margin-top: 7rem;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+    <div class="con row justify-content-center">
+    <div class="col-md-6">
                 <div class="card shadow-lg p-4">
                     <h3 class="text-center">Register</h3>
 
@@ -65,7 +71,7 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                        <button style="background-color: #1e3a8a" type="submit" class="btn btn-primary w-100">Register</button>
                         <p class="text-center mt-3">Already have an account? <a href="/public/login">Login here</a></p>
                     </form>
                 </div>
