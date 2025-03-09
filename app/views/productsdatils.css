@@ -1,0 +1,169 @@
+/* تصميم الكارد */
+
+.product-details-card {
+padding-top: 100px;
+
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+  margin: auto;
+    gap: 20px;
+    position: relative;
+}
+
+/* جزء الصورة */
+.product-image {
+    flex: 1;
+    position: relative;
+    text-align: center;
+}
+
+.product-image img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* تصنيف المنتج */
+.category-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #009cff;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* جزء المعلومات */
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* اسم المنتج والسعر */
+.product-name {
+    font-size: 24px;
+    color: #1E3A8A;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 22px;
+    color: #009cff;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* حالة المنتج */
+/* حالة المنتج */
+.stock-status-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* زر In Stock */
+.stock-status {
+    background: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    border: none;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* النص الرمادي بجانب الزر */
+.stock-status-text {
+    color: #888;
+    font-size: 14px;
+}
+
+/* وصف المنتج */
+.product-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* ميزات المنتج */
+.product-features {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.product-features p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-features i {
+    color: #009cff;
+    font-size: 18px;
+}
+
+/* أزرار الشراء */
+.product-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.cart-btn, .buy-now {
+    background: linear-gradient(to right, #1E3A8A, #009cff);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cart-btn:hover, .buy-now:hover {
+    background: #1E3A8A;
+}
+
+/* تصميم متجاوب للشاشات الصغيرة */
+@media (max-width: 1024px) {
+    .product-details-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image img {
+        max-height: 300px;
+    }
+
+    .product-info {
+        text-align: center;
+    }
+
+    .product-actions {
+        justify-content: center;
+    }
+}

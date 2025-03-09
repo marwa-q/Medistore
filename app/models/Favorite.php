@@ -45,4 +45,13 @@ class Favorite
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getFavoriteCount($userId)
+    {
+        $query = "SELECT COUNT(*) as count FROM favorites WHERE customer_id = :user_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return (int) ($result['count'] ?? 0);
+    }
 }
