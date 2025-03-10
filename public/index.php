@@ -49,8 +49,15 @@ $theProductController = new ProductsController($pdo);
 // Test
 // $productController->showAllCategories();
 $router->addRoute("/dashboard", function () {
+    // Check if the 'role' cookie exists
+    if (!isset($_COOKIE['role']) || ($_COOKIE['role'] !== 'admin' && $_COOKIE['role'] !== 'super admin')) {
+        header("Location: /public/products"); // Redirect unauthorized users
+        exit();
+    }
+
     require_once __DIR__ . '/../app/views/_AdminDashboard/dashboard.php';
 });
+
 /****************************************************************/
 // Homepage Test Route
 
@@ -84,7 +91,6 @@ $router->addRoute("/profile", function () use ($authController, $NavController) 
     }
     $authController->showUserSettings();
     require_once __DIR__ . '/../app/views/Navbar/footer.php';
-
 });
 
 $router->addRoute("/copon", function () use ($coponController) {
@@ -95,7 +101,6 @@ $router->addRoute("/contactus", function () use ($NavController) {
     $NavController->showNavBar();
     require_once __DIR__ . '/../app/views/landingPage/contactus.php';
     require_once __DIR__ . '/../app/views/Navbar/footer.php';
-
 });
 
 $router->addRoute("/settings", function () use ($authController) {
@@ -155,13 +160,13 @@ $router->addRoute("/users/delete", function () use ($AdminUsersController) {
 
 // Anas
 $router->addRoute("/register", function () use ($authController, $NavController) {
-    $NavController->showNavBar();
     $authController->register();
     require_once __DIR__ . '/../app/views/Navbar/footer.php';
 });
 
-$router->addRoute("/login", function () use ($authController , $NavController) {
-    $NavController->showNavBar();
+
+$router->addRoute("/login", function () use ($authController, $NavController) {
+
     $authController->login();
     require_once __DIR__ . '/../app/views/Navbar/footer.php';
 });
@@ -230,10 +235,10 @@ $router->addRoute("/productr/:id", function ($id) use ($productController, $NavC
 
 });
 
-$router->addRoute("/favorite", function () use ($FavoriteController , $NavController) {
+$router->addRoute("/favorite", function () use ($FavoriteController, $NavController) {
     $NavController->showNavBar();
     $FavoriteController->showFavorites();
-    require_once __DIR__ . '/../app/views/Navbar/footer.php';
+    // require_once __DIR__ . '/../app/views/Navbar/footer.php';
 });
 
 $router->addRoute("/addtofavorites", function () use ($FavoriteController) {
@@ -247,10 +252,12 @@ $router->addRoute("/removefromfavorites", function () use ($FavoriteController) 
 
 //Marwa 
 
-$router->addRoute('/cart', function () use ($cartController , $NavController) {
+
+$router->addRoute('/cart', function () use ($cartController, $NavController) {
     $NavController->showNavBar();
     $cartController->showCart();
-    require_once __DIR__ . '/../app/views/Navbar/footer.php';
+    // require_once __DIR__ . '/../app/views/Navbar/footer.php';
+
 });
 
 $router->addRoute('/cart/add', function () use ($cartController) {
@@ -277,10 +284,9 @@ $router->addRoute('/checkout', function () use ($orderController) {
 
 
 $router->addRoute('/thank-you', function () use ($NavController) {
-    $NavController->showNavBar();
+    // $NavController->showNavBar();
     require_once __DIR__ . '/../app/views/Checkout/thank_you.php';
-    require_once __DIR__ . '/../app/views/Navbar/footer.php';
-
+    // require_once __DIR__ . '/../app/views/Navbar/footer.php';
 });
 
 
