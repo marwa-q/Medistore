@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .con {
+            margin: 5rem;
+            margin-top: 7rem;
+
+        }
+    </style>
 </head>
 
 <body class="bg-light">
-    <div class="container mt-5">
-        <div class="row justify-content-center">
+        <div class="con row justify-content-center">
             <div class="col-md-5">
                 <div class="card shadow-lg p-4">
                     <h3 class="text-center">Login</h3>
@@ -23,12 +29,11 @@
                             <label class="form-label">Password</label>
                             <input type="password" name="password" class="form-control" placeholder="Enter password" required>
                         </div>
-                        <button type="submit" class="btn btn-success w-100">Login</button>
+                        <button style="background-color: #1e3a8a" type="submit" class="btn btn-success w-100">Login</button>
                         <p class="text-center mt-3">Don't have an account? <a href="/public/register">Register here</a></p>
                     </form>
                 </div>
             </div>
-        </div>
     </div>
 </body>
 

@@ -15,17 +15,18 @@
 
 <body>
     <!-- about section id="about"-->
-    <section class="section-about">
+    <section class="section-about" style="margin-top: 30px;">
         <h2>About Us</h2>
         <div class="div-about">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quia dolor numquam vero
-            voluptas eum voluptatem expedita rem excepturi, adipisci eius?
+            Medistore provides high-quality medical supplies for healthcare professionals and individuals. From essential equipment to everyday medical needs, we ensure reliable, affordable, and fast delivery. Shop with confidence and prioritize health with Medistore! 
         </div>
     </section>
 
     <!-- Featurs Section Start -->
 
     <section class="features-section">
+    <h2>Features</h2>
+    <br>
         <div class="features-container">
             <div class="feature-card">
                 <img src="/app/views/LandingPage/img/9802733_free_shipping_sales_discount_offer_icon.png" alt="Free Shipping">
@@ -89,15 +90,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
     <!-- <script src="..\js/index.js"></script> -->
 
 </body>

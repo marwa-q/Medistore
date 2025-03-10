@@ -57,8 +57,8 @@ class AdminProductsController
     public function restore($id)
     {
         if ($this->productModel->restoreProduct($id)) {
-            header("Location: public/products"); // Redirect to products page
-            exit;
+            header("Location: /public/products"); // Redirect to products page
+            exit();
         } else {
             echo "Failed to restore product.";
         }
@@ -68,8 +68,8 @@ class AdminProductsController
     {
         $success = $this->productModel->softDeleteProduct($id);
         if ($success) {
-            header("Location: public/products");
-            exit;
+            header("Location: /public/products");
+            exit();
         } else {
             echo "Failed to delete product";
         }
