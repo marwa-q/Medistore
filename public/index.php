@@ -164,7 +164,9 @@ $router->addRoute("/register", function () use ($authController, $NavController)
     require_once __DIR__ . '/../app/views/Navbar/footer.php';
 });
 
+
 $router->addRoute("/login", function () use ($authController, $NavController) {
+
     $authController->login();
     require_once __DIR__ . '/../app/views/Navbar/footer.php';
 });
@@ -230,6 +232,7 @@ $router->addRoute("/productr/:id", function ($id) use ($productController, $NavC
     $NavController->showNavBar();
     $productController->productDetails($id);
     require_once __DIR__ . '/../app/views/Navbar/footer.php';
+
 });
 
 $router->addRoute("/favorite", function () use ($FavoriteController, $NavController) {
@@ -249,10 +252,12 @@ $router->addRoute("/removefromfavorites", function () use ($FavoriteController) 
 
 //Marwa 
 
+
 $router->addRoute('/cart', function () use ($cartController, $NavController) {
     $NavController->showNavBar();
     $cartController->showCart();
     // require_once __DIR__ . '/../app/views/Navbar/footer.php';
+
 });
 
 $router->addRoute('/cart/add', function () use ($cartController) {
