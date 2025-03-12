@@ -12,4 +12,4 @@ This repository contains my project which is on medical store stuff. Feel free t
 
 - **Clone the repo**:  
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/marwa-q/Medistore.git
